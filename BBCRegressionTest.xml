@@ -11,15 +11,5 @@
         </classes>
     </test> <!-- Test -->
 
-    <test name="BBCNewsRegressionTest" enabled="false">
-        <classes>
-            <class name="com.bbcnews.automation.scripts.BBCNewsSmokeTest" />
-        </classes>
-    </test>
-
-    <test name="BBCNewsFunctionalTest" enabled="false">
-        <classes>
-            <class name="com.bbcnews.automation.scripts.BBCNewsFunctionalTest"></class>
-        </classes>
-    </test>
+   
 </suite> <!-- Suite -->

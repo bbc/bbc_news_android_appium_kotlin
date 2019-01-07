@@ -4,22 +4,10 @@
     <!--<listeners>-->
         <!--<listener class-name="com.bbcnews.automation.testutils.Listeners.TestListeners" />-->
     <!--</listeners>-->
-
-    <test name="BBCSmokeTest" enabled="false">
-        <classes>
-            <class name="com.bbcnews.automation.scripts.BBCNewsSmokeTest" />
-        </classes>
-    </test> <!-- Test -->
-
     <test name="BBCNewsRegressionTest" enabled="true">
         <classes>
             <class name="com.bbcnews.automation.scripts.BBCNewsSmokeTestKotlin" />
         </classes>
     </test>
 
-    <test name="BBCNewsFunctionalTest" enabled="false">
-        <classes>
-            <class name="com.bbcnews.automation.scripts.BBCNewsRegressionTestKotlin"></class>
-        </classes>
-    </test>
-</suite> <!-- Suite -->
+   </suite> <!-- Suite -->
