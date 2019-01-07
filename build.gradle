@@ -1,0 +1,123 @@
+import java.text.SimpleDateFormat
+
+
+    plugins {
+        id 'java'
+        id 'ru.vyarus.quality' version '2.2.0'
+        id "io.qameta.allure" version "2.5"
+        id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+    }
+
+    group 'BBCNewsAndroidApp_Appium'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+    dependencies {
+        testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+        compile group: 'io.qameta.allure', name: 'allure-gradle', version: '2.5'
+        compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+        compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.14.0'
+        compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.14.0'
+        compile group: 'com.aventstack', name: 'extentreports', version: '3.1.5'
+        compile group: 'ru.yandex.qatools.ashot', name: 'ashot', version: '1.5.4'
+        compile group: 'com.relevantcodes', name: 'extentreports', version: '2.41.2'
+        compile group: 'io.appium', name: 'java-client', version: '6.1.0'
+        compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+        compile group: 'log4j', name: 'log4j', version: '1.2.17'
+        compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.8.1'
+        compile group: 'org.springframework.amqp', name: 'spring-amqp', version: '2.1.2.RELEASE'
+        compile group: 'com.tesults', name: 'tesults', version: '1.0.1'
+        compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'
+        compile group: 'ru.yandex.qatools.ashot', name: 'ashot', version: '1.5.4'
+        compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.8.1'
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+        compile group: 'com.opencsv', name: 'opencsv', version: '4.4'
+
+    }
+
+    def getCurrentTimestamp() {
+        Date today = new Date()
+        SimpleDateFormat df = new SimpleDateFormat("dd_MMM_yyyy_hh_mm_aa")
+        return df.format(today)
+    }
+
+    ext {
+
+        //set true to enable to compile using aspectj
+        compileUsingAspect = false
+
+        testResultsDir = 'test-output'
+        runTime = getCurrentTimestamp()
+        resultOutputDir = String.valueOf(testResultsDir)//+'/'+runTime
+
+        // to execute specify TestNG suite files
+        if (project.hasProperty('SmokeTest')) {
+            suiteFile = '/BBCNewsSmokeTest.xml'
+           // suites '/BBCNewsSmokeTest.xml'
+        }
+        if(project.hasProperty('RegressionTest')){
+            suiteFile = '/BBCRegressionTest.xml'
+            //suites 'BBCRegressionTest.xml'
+        }
+        if(project.hasProperty('StatsTest')){
+            suiteFile = '/BBCStatsTest.xml'
+            //suites 'BBCStatsTest.xml'
+        }
+
+        if (!project.hasProperty('suiteFile')) {
+
+            suiteFile = '/BBCNewsSmokeTest.xml'
+        }
+
+    }
+
+test {
+
+    systemProperty 'DeviceID', System.properties['DeviceID']
+    systemProperty 'DeviceOS', System.properties['DeviceOS']
+    systemProperty 'DeviceName', System.properties['DeviceName']
+    systemProperty 'AppPath', System.properties['AppPath']
+    systemProperty 'AppiumPort', System.properties['AppiumPort']
+
+    useTestNG() {
+        useDefaultListeners = true
+        outputDirectory file(resultOutputDir)
+        suites suiteFile
+        ignoreFailures = true
+    }
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    testLogging {
+        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+    }
+}
+
+allure {
+    autoconfigure = true
+    aspectjweaver = true
+    version = '2.5.0'
+    useTestNG {
+        version = '2.0-BETA15'
+    }
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
+

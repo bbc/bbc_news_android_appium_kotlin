@@ -1,0 +1,18 @@
+<suite name="QAF Demo" verbose="0">
+	<test name="HomePage Test" enabled="true">
+		<classes>
+			<class name="com.bbcnews.automation.scripts.HomePage"></class>
+		</classes>
+	</test>
+	<test name="MyNews Test" enabled="false">
+		<classes>
+			<class name="com.qmetry.qaf.automation.step.client.csv.KwdTestFactory"></class>
+		</classes>
+	</test>
+	<test name="Popular Test" enabled="false">
+		<classes>
+			<class name="com.qmetry.qaf.example.test.SampleTest"></class>
+		</classes>
+	</test>
+
+</suite>

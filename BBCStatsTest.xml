@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="BBCNewsSuite">
+    <!--<listeners>-->
+        <!--<listener class-name="com.bbcnews.automation.testutils.Listeners.TestListeners" />-->
+    <!--</listeners>-->
+
+    <test name="BBCSmokeTest" enabled="true">
+        <classes>
+            <class name="com.bbcnews.automation.scripts.BBCStatsTest" />
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="BBCNewsRegressionTest" enabled="false">
+        <classes>
+            <class name="com.bbcnews.automation.scripts.BBCNewsSmokeTest" />
+        </classes>
+    </test>
+
+    <test name="BBCNewsFunctionalTest" enabled="false">
+        <classes>
+            <class name="com.bbcnews.automation.scripts.BBCNewsFunctionalTest"></class>
+        </classes>
+    </test>
+</suite> <!-- Suite -->
