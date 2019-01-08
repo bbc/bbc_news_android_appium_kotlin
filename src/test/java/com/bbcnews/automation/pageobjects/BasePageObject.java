@@ -1,6 +1,5 @@
 package com.bbcnews.automation.pageobjects;
 
-import com.bbcnews.automation.base.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidBy;

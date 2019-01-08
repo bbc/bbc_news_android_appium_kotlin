@@ -9,7 +9,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter
 import com.aventstack.extentreports.reporter.configuration.ChartLocation
 import com.aventstack.extentreports.reporter.configuration.Theme
-import com.bbcnews.automation.commonfunctions.CommonFunctions
 import com.bbcnews.automation.testutils.DeviceDetails
 import com.bbcnews.automation.testutils.PlatformTouchAction
 import io.appium.java_client.AppiumDriver
@@ -40,13 +39,11 @@ import java.util.*
 
  open class CommonFunctionKotlin {
 
-    // internal var extent = ExtentReports()
-    public lateinit var extent: ExtentReports
-    public lateinit var htmlReporter: ExtentHtmlReporter
-    //abstract var htmlReporter: ExtentHtmlReporter
-    public lateinit var test: ExtentTest
-     public  var result: ITestResult? = null
 
+     lateinit var extent: ExtentReports
+     lateinit var htmlReporter: ExtentHtmlReporter
+     lateinit var test: ExtentTest
+     var result: ITestResult? = null
 
      var appiumDriver: AppiumDriver<MobileElement>? = null
 
@@ -283,7 +280,7 @@ import java.util.*
 //                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
 //                .moveTo(PointOption.point(startX, endY)).release().perform()
 
-        PlatformTouchAction(driver as AppiumDriver<MobileElement>).
+        PlatformTouchAction(driver).
                 press(PointOption.point(startX, startY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
                 .moveTo(PointOption.point(startX, endY)).release().perform()
@@ -353,7 +350,7 @@ import java.util.*
 
              } else if (result.status == ITestResult.SKIP) {
                  test.skip(MarkupHelper.createLabel(result.name + " Test Case is SKIPPED", ExtentColor.YELLOW))
-                 test.skip(result!!.throwable)
+                 test.skip(result.throwable)
 
              }
          } catch (e: NullPointerException) {
@@ -397,7 +394,7 @@ import java.util.*
          val curDate = Date()
          println(curDate.toString())
 
-         val dateName = SimpleDateFormat("hh:mm").format(Date())
+        // val dateName = SimpleDateFormat("hh:mm").format(Date())
 
          val reportfolder = extentResultFolder(absoluteFilePath)
          println("reportfolder is $reportfolder")
@@ -435,8 +432,8 @@ import java.util.*
       * @param, driverType, element and path for screenshot to be taken
       */
 
-     fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, path: String, element2: MobileElement) {
-         val flag = false
+     fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, element2: MobileElement) {
+
          for (i in 0..20) {
              try {
                  waitForScreenToLoad(appiumDriver, element, 5)
@@ -455,7 +452,7 @@ import java.util.*
                  break
              } catch (e: Exception) {
 
-                 CommonFunctions.horizontalSwipe(appiumDriver)
+                // horizontalSwipe(appiumDriver)
 
              }
 
@@ -467,7 +464,7 @@ import java.util.*
       * Function to check, whether given element is selected or not
       * @param, drivertype, element name
       */
-     fun IselementSelected(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement): Boolean {
+     fun IselementSelected( element: MobileElement): Boolean {
          if (element.isSelected) {
              test.log(Status.INFO, "Element selected")
              return true
@@ -484,7 +481,7 @@ import java.util.*
       * @param, driverType, element and string that's need to be entered
       */
 
-     fun enterText(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, searchkey: String) {
+     fun enterText(element: MobileElement, searchkey: String) {
          try {
              element.sendKeys(searchkey)
          } catch (e: Exception) {
@@ -497,7 +494,7 @@ import java.util.*
       * @param, drivertype and element
       */
 
-     fun getText(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement): String {
+     fun getText(element: MobileElement): String {
          return element.text
      }
 

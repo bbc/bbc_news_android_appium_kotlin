@@ -67,39 +67,5 @@ public class CharlesProxy {
 
     }
 
-//    public static void main(String args[]) throws InterruptedException {
-//        CharlesProxy charlesproxy = new CharlesProxy();
-//        charlesproxy.startCharles();
-//        Thread.sleep(12000);
-//        charlesproxy.charlesSessionStart();
-//        Thread.sleep(12000);
-//        charlesproxy.downloadCharlesSession();
-//        charlesproxy.stopCharlesSession();
-//        charlesproxy.converttoCSV();
-//        charlesproxy.stopCharles();
-//    }
 }
-
-
-//        try {
-//
-//
-//
-//            Process p = Runtime.getRuntime().exec("curl -v -x http://192.168.1.221:8888 http://control.charles/recording/start");
-//
-//
-//            Process p1 = Runtime.getRuntime().exec("curl -o session.chls -x http://192.168.1.221:8888 http://control.charles/session/download");
-//            p1.waitFor();
-//            Thread.sleep(10000);
-////            BufferedReader reader = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-////            String line = "";
-////            while ((line = reader.readLine()) != null) {
-////                System.out.println(line + "\n");
-////            }
-//            Process p2 = Runtime.getRuntime().exec("curl -v -x http://192.168.1.221:8888 http://control.charles/recording/stop");
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 

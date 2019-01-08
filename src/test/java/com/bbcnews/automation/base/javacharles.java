@@ -33,7 +33,7 @@ public class javacharles {
         String cvssplit = "&";
         String[] country = null;
         String[] staturl = null;
-        ArrayList<String> list = new ArrayList();
+       // ArrayList<String> list = new ArrayList();
         try {
 
             br = new BufferedReader(new FileReader(csvFile));
@@ -49,7 +49,7 @@ public class javacharles {
                     for (int j = 0; j < newsstats.length; j++) {
                         if (staturl[i].equalsIgnoreCase(newsstats[j]))
                         {
-                            list.add(staturl[i].toString());
+                           // list.add(staturl[i].toString());
                             String matchedstats = staturl[i].toString();
                             System.out.println("The New Generated Stats " + matchedstats);//list.add(staturl[i].toString()));
                         }
