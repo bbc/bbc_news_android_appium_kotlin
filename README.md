@@ -23,8 +23,8 @@ If you want a specific version of Appium use this:
 
 npm install -g appium@x.x.x ( e.g. npm install -g appium@1.5.3)
 
-appium-doctor
-You should get all greens from the report something similar to the image below:
+run appium-doctor from terminal
+You should get all greens from the report:
 
 ## Android
 Configurations
