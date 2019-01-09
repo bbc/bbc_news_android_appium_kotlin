@@ -14,7 +14,9 @@ Android AVD created (or Genymotion)
 ## Appium needs node.js,install this too!
 
 brew install node
+
 npm install npm@latest -g
+
 npm init  ( tap enter to all )
 
 ## Appium installed through npm
