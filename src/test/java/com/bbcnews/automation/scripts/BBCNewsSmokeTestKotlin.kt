@@ -5,13 +5,11 @@ import com.bbcnews.automation.commonfunctions.CommonFunctionKotlin
 
 
 import com.bbcnews.automation.pageobjects.*
-import com.bbcnews.automation.testutils.*
 import io.appium.java_client.MobileElement
 import io.appium.java_client.android.AndroidDriver
 
 import io.appium.java_client.pagefactory.AppiumFieldDecorator
 import io.appium.java_client.remote.MobileCapabilityType
-import io.qameta.allure.Description
 import io.qameta.allure.Severity
 import io.qameta.allure.SeverityLevel
 import io.qameta.allure.Story
@@ -32,18 +30,14 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
 {
 
 
-    private var capabilities = DesiredCapabilities()
-    private var Deviceos_Name: String? = null
-    private var Device_id: String? = null
-    private var Device_Name: String? = null
-    private var App_Path: String? = null
-    private var Appium_Port: String? = null
-    private lateinit var file: File
-
-    internal var commonFunctionKotlin = CommonFunctionKotlin()
-
-
-
+    var capabilities = DesiredCapabilities()
+    var DeviceOsName: String? = null
+    var Deviceid: String? = null
+    var DeviceName: String? = null
+    var AppPath: String? = null
+    var AppiumPort: String? = null
+    lateinit var file: File
+    var commonFunctionKotlin = CommonFunctionKotlin()
     private lateinit var homePageObject: HomePageObject
     private lateinit var androidDriver: AndroidDriver<MobileElement>
     private lateinit var myNewsPageObject: MyNewsPageObject
@@ -51,12 +45,9 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
     private lateinit var vidoePageObject: VidoePageObject
     private lateinit var popularPageObject: PopularPageObject
 
-
-
-
-    private val curDate = Date()
-    private val format = SimpleDateFormat("yyyy-MM-dd")
-    private val DateToStr = format.format(curDate)
+//    private val curDate = Date()
+//    private val format = SimpleDateFormat("yyyy-MM-dd")
+//    private val DateToStr = format.format(curDate)
     private val screenshotpath = "$workingDirectory/Screenshots/"
 
     @BeforeTest
@@ -66,7 +57,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
 
             readDeviceDetailsCommandPrompt()
             setUP()
-            LaunchBBCNews()
+            launchBBCNews()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -76,18 +67,18 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
      *  gets the details of the device, app path , appium port which are passed through command prompt
      */
 
-    fun readDeviceDetailsCommandPrompt() {
+    private fun readDeviceDetailsCommandPrompt() {
         try {
-            Deviceos_Name = System.getProperty("DeviceOS")
-            Device_id = System.getProperty("DeviceID")
-            Device_Name = System.getProperty("DeviceName")
-            App_Path = System.getProperty("AppPath")
-            Appium_Port = System.getProperty("AppiumPort")
-            println("Passed The Device OS is $Deviceos_Name")
-            println("Passed The Device ID is $Device_id")
-            println("Passed The Device Name is $Device_Name")
-            println("Passed The Appium port is $Appium_Port")
-            println("Passed The Application path  is $App_Path")
+            DeviceOsName = System.getProperty("DeviceOS")
+            Deviceid = System.getProperty("DeviceID")
+            DeviceName = System.getProperty("DeviceName")
+            AppPath = System.getProperty("AppPath")
+            AppiumPort = System.getProperty("AppiumPort")
+            println("Passed The Device OS is $DeviceOsName")
+            println("Passed The Device ID is $Deviceid")
+            println("Passed The Device Name is $DeviceName")
+            println("Passed The Appium port is $AppiumPort")
+            println("Passed The Application path  is $AppPath")
         } catch (e: Exception) {
             e.printStackTrace()
 
@@ -100,18 +91,18 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
      * setup the desired capabilities based on the parameter set
      */
 
-    fun setUP() {
+    private fun setUP() {
         try {
             //  appiumStart.startAppium(Integer.parseInt(Appium_Port));
-            val appium_url = "http://127.0.0.1:$Appium_Port/wd/hub"
-            println("Appium Server Address : - $appium_url")
+            val appiumurl = "http://127.0.0.1:$AppiumPort/wd/hub"
+            println("Appium Server Address : - $appiumurl")
             capabilities = DesiredCapabilities()
-            capabilities.setCapability(MobileCapabilityType.UDID, Device_id)
+            capabilities.setCapability(MobileCapabilityType.UDID, Deviceid)
             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "bbcnews")
             capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2")
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android")
             capabilities.setCapability("appiumversion", "1.8.1")
-            capabilities.setCapability("app", App_Path) //"/Users/ramakh02/Desktop/tools/APK/BBCNews-5.5.0.35.apk");
+            capabilities.setCapability("app", AppPath) //"/Users/ramakh02/Desktop/tools/APK/BBCNews-5.5.0.35.apk");
             //it's not mandatory to pass OS version of the device
             // capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,Deviceos_Name);
             capabilities.setCapability("appPackage", "bbc.mobile.news.uk.internal")
@@ -119,7 +110,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
             // capabilities.setCapability(MobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, true);
             // capabilities.setCapability("autoAcceptAlerts", true);
             capabilities.setCapability("--session-override", true)
-            androidDriver = AndroidDriver(URL(appium_url), capabilities)
+            androidDriver = AndroidDriver(URL(appiumurl), capabilities)
         } catch (e: Exception) {
         }
     }
@@ -128,7 +119,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
      *
      * function to initialise the page objects for Home page, Video page, popular page
      */
-    fun LaunchBBCNews() {
+   private fun launchBBCNews() {
         try {
             homePageObject = HomePageObject()
             PageFactory.initElements(AppiumFieldDecorator(androidDriver), homePageObject)
@@ -148,15 +139,15 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
             commonFunctionKotlin.emptyFolder(screenshotpath)
 
             // commonFunctionKotlin.startReport("SmokeTest");
-            commonFunctionKotlin.createrReportHive("SmokeTest", Deviceos_Name.toString(), Device_Name.toString(), Device_id.toString())
+            commonFunctionKotlin.createrReportHive("SmokeTest", DeviceOsName.toString(), DeviceName.toString(), Deviceid.toString())
             //createrReportHive("SmokeTest", Deviceos_Name, Device_Name, Device_id)
 
             androidDriver.context("NATIVE_APP")
             file = File(screenshotpath)
-            val screenshot = file.getAbsolutePath()
+            val screenshot = file.absolutePath
             println("The ScreenShot Path is $screenshot")
 
-            val orientation = androidDriver.getOrientation()
+            val orientation = androidDriver.orientation
             if (orientation != ScreenOrientation.LANDSCAPE) {
                 androidDriver.rotate(ScreenOrientation.PORTRAIT)
             } else {
@@ -197,7 +188,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
             commonFunctionKotlin.startTest("HomePage", "Checking the HomePage", "Smoke")
             Assert.assertTrue(basePageObject.topstories.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.topstories)
-            commonFunctionKotlin.IselementSelected(basePageObject.topstories)
+            commonFunctionKotlin.iselementSelected(basePageObject.topstories)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.mynews)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.popular)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.video)
@@ -218,7 +209,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("PopularPage", "Checking the Popular", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, basePageObject.popular, false)//,file.getAbsolutePath());
-            commonFunctionKotlin.IselementSelected(basePageObject.popular)
+            commonFunctionKotlin.iselementSelected(basePageObject.popular)
             Assert.assertTrue(basePageObject.popular.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, popularPageObject.mostread)
         } catch (e: AssertionError) {
@@ -255,7 +246,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("MyNews", "Checking the MyNews", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, basePageObject.mynews, false)
-            commonFunctionKotlin.IselementSelected(basePageObject.topstories)
+            commonFunctionKotlin.iselementSelected(basePageObject.topstories)
             Assert.assertTrue(basePageObject.mynews.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynews_summary)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynewstitle)
@@ -359,20 +350,21 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
             commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.smp_placeholder_play_button, false)
             commonFunctionKotlin.sleepmethod(3000)
             commonFunctionKotlin.navigateBack(androidDriver)
+
         } catch (e: AssertionError) {
             throw e
         }
     }
 
-//    @AfterMethod
-//    fun getResult(result: ITestResult)
-//     {
-//        try {
-//            commonFunctionKotlin.getTestResult(androidDriver, result)
-//        } catch (e: IOException) {
-//        }
-//
-//    }
+    @AfterMethod
+    fun getResult(result: ITestResult)
+     {
+        try {
+            commonFunctionKotlin.getTestResult(androidDriver, result)
+        } catch (e: IOException) {
+        }
+
+    }
 
     @AfterTest
     fun tearDown() {

@@ -170,7 +170,7 @@ class BBCNewsRegressionTestKotlin
     fun openBBCNewsApp() {
         try {
             commonFunctionKotlin.startTest("HomePage", "Checking the HomePage", "Regression")
-            commonFunctionKotlin.IselementSelected(basePageObject.topstories)
+            commonFunctionKotlin.iselementSelected(basePageObject.topstories)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.topstories)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.mynews)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.popular)
@@ -215,7 +215,7 @@ class BBCNewsRegressionTestKotlin
 
         commonFunctionKotlin.startTest("MyNews", "Test to check MyNews page", "Regression")
         commonFunctionKotlin.tapButton(androidDriver, basePageObject.mynews, false)
-        commonFunctionKotlin.IselementSelected(basePageObject.mynews)
+        commonFunctionKotlin.iselementSelected(basePageObject.mynews)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynews_summary)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynewstitle)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.addnews_button)
@@ -231,13 +231,13 @@ class BBCNewsRegressionTestKotlin
         var mytopic_emptyview_text = "Your added topics will be displayed here"
         commonFunctionKotlin.startTest("MyNews", "Checking EditMyTopics Page", "Regression")
         commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mynews_startButton, false)
-        commonFunctionKotlin.IselementSelected( myNewsPageObject.addtopics)
+        commonFunctionKotlin.iselementSelected( myNewsPageObject.addtopics)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mytopics)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.location_button)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.editMyTopics)
         commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews)
         commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mytopics,false)//,file.getAbsolutePath());
-        commonFunctionKotlin.IselementSelected( myNewsPageObject.mytopics)
+        commonFunctionKotlin.iselementSelected( myNewsPageObject.mytopics)
         Assert.assertEquals(mytopic_emptyview_text, myNewsPageObject.mytopic_emptyview.text, "Text Mesaaged")
 
     }
@@ -299,7 +299,7 @@ class BBCNewsRegressionTestKotlin
     fun testVideopage() {
         commonFunctionKotlin.startTest("Video","Playing a Live Video","Regression")
         commonFunctionKotlin.tapButton(androidDriver, basePageObject.video, false)
-        commonFunctionKotlin.IselementSelected(basePageObject.video)
+        commonFunctionKotlin.iselementSelected(basePageObject.video)
         commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.bbcnewsChannel, false)
         commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.live_media_item_caption)
         commonFunctionKotlin.elementDisplayed(androidDriver, basePageObject.navigate_back)
@@ -327,7 +327,7 @@ class BBCNewsRegressionTestKotlin
         try {
             commonFunctionKotlin.startTest("Popular", "Checking Popular Page", "Regression")
             commonFunctionKotlin.tapButton(androidDriver, popularPageObject.popular, false)
-            commonFunctionKotlin.IselementSelected(popularPageObject.popular)
+            commonFunctionKotlin.iselementSelected(popularPageObject.popular)
             commonFunctionKotlin.elementDisplayed(androidDriver, popularPageObject.mostread)
 
         } catch (e: Exception) {
