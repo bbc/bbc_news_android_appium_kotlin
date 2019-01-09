@@ -11,7 +11,20 @@ Android SDK (for Android execution | with ANDROID_HOME and PATH configured)
 
 Android AVD created (or Genymotion)
 
-Appium installed through npm
+## Appium installed through npm
+
+npm install -g appium
+
+npm install wd
+
+npm install appium-doctor -g
+
+If you want a specific version of Appium use this:
+
+npm install -g appium@x.x.x ( e.g. npm install -g appium@1.5.3)
+
+appium-doctor
+You should get all greens from the report something similar to the image below:
 
 ## Android
 Configurations
