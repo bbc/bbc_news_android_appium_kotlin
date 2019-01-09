@@ -1,5 +1,5 @@
 # bbc_news_android_appium_kotlin
-Automation for BBC News Android app using Appium ,Kotlin and TestNG 
+Automation for BBC News Android app using Appium ,Kotlin , TestNG and PageObjectModel
 
 ## What you need
 
