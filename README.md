@@ -11,6 +11,12 @@ Android SDK (for Android execution | with ANDROID_HOME and PATH configured)
 
 Android AVD created (or Genymotion)
 
+## Appium needs node.js,install this too!
+
+brew install node
+npm install npm@latest -g
+npm init  ( tap enter to all )
+
 ## Appium installed through npm
 
 npm install -g appium
