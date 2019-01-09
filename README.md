@@ -2,10 +2,15 @@
 Automation for BBC News Android app using Appium ,Kotlin and TestNG 
 
 ## What you need
+
 Java JDK (with JAVA_HOME and PATH configured)
+
 IDE 
+
 Android SDK (for Android execution | with ANDROID_HOME and PATH configured)
+
 Android AVD created (or Genymotion)
+
 Appium installed through npm
 
 ## Android
@@ -14,11 +19,17 @@ To execute the examples over the Android platform you'll need:
 
 ## Android SDK
 Updated Build Tools, Platform Tools and, at least, one System Image (Android Version)
+
 Configure Android Path on your environment variables
+
 ANDROID_HOME: root android sdk directory
+
 PATH: ANDROID_HOME + the following paths = platform-tools, tools, tools/bin
+
 And Android Virtual Device
+
 Inspect elements on Android
+
 You can use the uiautomatorviewer to inspect elements on Android devices. or you can use Appium Desktop
 
 # Appium
