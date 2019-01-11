@@ -20,6 +20,8 @@ import io.appium.java_client.android.nativekey.KeyEvent
 import io.appium.java_client.touch.WaitOptions
 import io.appium.java_client.touch.offset.PointOption
 import org.apache.commons.io.FileUtils
+import org.openqa.selenium.By
+import org.openqa.selenium.NoSuchElementException
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebElement
@@ -295,6 +297,56 @@ import java.util.*
 
     }
 
+     /**
+      * Function to seek the video, you need pass the percentage of seeking
+      * @param driver
+      * @param element
+      * @param d
+      * @throws InterruptedException
+      */
+
+     fun  livevideoseeking(appiumdriver: AppiumDriver<MobileElement>,element:MobileElement,d:Double)
+     {
+            val startx = element.location.getX()
+            val endx = element.size.width
+            val yaxis = element.location.getY()
+            val moveToXDirectionAt = (endx * d).toInt()
+
+         PlatformTouchAction(appiumdriver).
+                 press(PointOption.point(startx, yaxis)).
+                 waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).
+                 moveTo(PointOption.point(moveToXDirectionAt,yaxis)).release().perform()
+
+
+
+     }
+
+
+     /**
+     Function to enter the text into a textfeld
+     @param, driverType, element and string that's need to be entered
+      */
+
+     fun entersearchtext(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, searchkey: String)
+     {
+         element.sendKeys(searchkey)
+     }
+
+
+     /**
+      * Function to check whether an Element is present or not
+      */
+
+     fun isElementPresent(driver: AppiumDriver<WebElement>, locatorKey: By): Boolean {
+         try {
+             driver.findElement(locatorKey)
+             return true
+
+         } catch (e: NoSuchElementException) {
+             return false
+         }
+     }
+
 
     /**
      * Function to check whether an element is displayed , return true if present else fail
@@ -358,6 +410,12 @@ import java.util.*
      }
 
 
+     /**
+      * function to create a ExtentReport
+      * @reportname
+      * @deviceOS, @deviceName, @deviceId
+      *
+      */
 
 
      @Throws(Exception::class)

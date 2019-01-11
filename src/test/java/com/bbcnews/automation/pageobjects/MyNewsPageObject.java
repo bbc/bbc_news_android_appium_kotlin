@@ -31,6 +31,15 @@ public class MyNewsPageObject {
     @AndroidFindBy(accessibility = "Topic heading,Local news")
     public MobileElement localnews;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Allow location']")
+    public MobileElement allow_location;
+
+    @AndroidFindBy(id="com.android.packageinstaller:id/permission_allow_button")
+    public MobileElement allowlocation_premission;
+
+    @AndroidFindBy(id="com.android.packageinstaller:id/permission_deny_button")
+    public MobileElement allowlocation_permission_deny;
+
     @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/request_permission")
     public MobileElement location_button;
 
@@ -55,11 +64,23 @@ public class MyNewsPageObject {
     @AndroidFindBy(accessibility = "Manage your topics")
     public MobileElement mynews_managetopics;
 
-    public static String mynewstitle_text="Add Topics to create your own personal news feed";
+    public String mynewstitle_text="Add Topics to create your own personal news feed";
 
-    public static String mynewssummary_text="All the latest stories from your topics will appear here.";
+    public String mynewssummary_text="All the latest stories from your topics will appear here.";
 
-    public static String mytopic_emptyview_text="Your added topics will be displayed here";
+    public String mytopic_emptyview_text="Your added topics will be displayed here";
+
+    @AndroidFindBy(accessibility = "Add topic")
+    public  MobileElement mynews_addtopics;
+
+    @AndroidFindBy(accessibility="Edit My News")
+    public MobileElement editMyNews;
+
+    @AndroidFindBy(accessibility = "Remove topic")
+    public MobileElement removetopics;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='London']")
+    public MobileElement localnews_displayed;
 
 
 

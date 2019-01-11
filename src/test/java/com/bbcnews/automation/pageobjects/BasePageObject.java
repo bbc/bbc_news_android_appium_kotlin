@@ -10,12 +10,6 @@ public class BasePageObject {
 
     AppiumDriver<MobileElement> appiumDriver;
 
-//    public BasePageObject(AppiumDriver<MobileElement> appiumDriver)
-//    {
-//        this.appiumDriver=appiumDriver;
-//
-//    }
-
     public BasePageObject()
     {
 
@@ -34,7 +28,7 @@ public class BasePageObject {
     @AndroidFindBy(accessibility = "Back")
     public MobileElement backButton;
 
-   // @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2' and @text='NO, THANKS.']")
+    // @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2' and @text='NO, THANKS.']")
     @AndroidFindBy(xpath="//android.widget.Button[@text='NO, THANKS.']")
     public MobileElement nothanksbutton;
 
@@ -55,6 +49,7 @@ public class BasePageObject {
 
     @AndroidFindBy(accessibility = "Share story")
     public MobileElement sharestory;
+
 
     @AndroidFindAll(
             {
@@ -91,7 +86,14 @@ public class BasePageObject {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Search topics and articles']")
     public MobileElement searchfield;
 
-  //  @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/heading")
+    // @AndroidFindBy(xpath="//android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/chip_item') and @index='0']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Brexit' and @index='0']")
+    public MobileElement searchkeyword;
+
+    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/title")
+    public MobileElement headlinetitle;
+
+    //  @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/heading")
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/heading') and @index='0']")
     //@AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/content_card_ordered_badge') and @text='1']")
     public MobileElement searchheading;
@@ -117,9 +119,11 @@ public class BasePageObject {
     @AndroidFindBy(accessibility = "Cancel search")
     public MobileElement cancelSearch;
 
-    public static String SubDirectory =  "Screenshots";
+    public  String SubDirectory =  "Screenshots";
 
-    public static String ScreenshotPaths;
+    public  String ScreenshotPaths;
+
+    public  String searchtext ="Brexit";
 
 
     //BBC News Hindi Common Page Objects
@@ -216,6 +220,18 @@ public class BasePageObject {
 
     @AndroidFindBy(xpath = "//android.widget.Button[@index=1]")
     public MobileElement bbchindi_okbutton;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UK Politics added to My News']")
+    //   @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/snackbar_text")
+    public MobileElement alert_text;
+
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/snackbar_action")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='UNDO' and @index='1']")
+    public MobileElement undo_button;
+
+    public String alert_text_uk = "UK Politics added to My News";
+
+    public String alert_text_business = "Business added to My News";
 
 
 }
