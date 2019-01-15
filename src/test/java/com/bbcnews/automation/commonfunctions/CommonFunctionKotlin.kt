@@ -12,41 +12,44 @@ import com.aventstack.extentreports.reporter.configuration.Theme
 import com.bbcnews.automation.testutils.PlatformTouchAction
 import io.appium.java_client.AppiumDriver
 import io.appium.java_client.MobileElement
-import io.appium.java_client.PerformsTouchActions
-import io.appium.java_client.TouchAction
 import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.android.nativekey.AndroidKey
 import io.appium.java_client.android.nativekey.KeyEvent
 import io.appium.java_client.touch.WaitOptions
 import io.appium.java_client.touch.offset.PointOption
 import org.apache.commons.io.FileUtils
-import org.openqa.selenium.By
-import org.openqa.selenium.NoSuchElementException
-import org.openqa.selenium.OutputType
-import org.openqa.selenium.TakesScreenshot
-import org.openqa.selenium.WebElement
-
+import org.openqa.selenium.*
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
-import org.testng.*
+import org.testng.Assert
+import org.testng.ITestResult
+import ru.yandex.qatools.ashot.AShot
 
+import java.awt.*
+import java.awt.image.PixelGrabber
+import java.nio.file.Paths
 
 import java.io.File
-
 import java.io.IOException
+import java.nio.file.Files
 import java.text.SimpleDateFormat
 import java.time.Duration
-import java.util.*
+import java.util.ArrayList
+import java.util.Date
 
- open class CommonFunctionKotlin {
+import javax.imageio.ImageIO
 
 
-     private lateinit var extent: ExtentReports
-     private lateinit var htmlReporter: ExtentHtmlReporter
-     var test: ExtentTest?=null
-     var result: ITestResult? = null
 
-     var appiumDriver: AppiumDriver<MobileElement>? = null
+open class CommonFunctionKotlin {
+
+
+    private lateinit var extent: ExtentReports
+    private lateinit var htmlReporter: ExtentHtmlReporter
+    var test: ExtentTest? = null
+    var result: ITestResult? = null
+
+    var appiumDriver: AppiumDriver<MobileElement>? = null
 
 
     var config_file = "extent-config.xml"
@@ -100,35 +103,35 @@ import java.util.*
 
     }
 
-     open fun startTest(testName: String, testDecsription: String, category: String) = try {
+    open fun startTest(testName: String, testDecsription: String, category: String) = try {
         test = extent.createTest(testName, testDecsription)
         test?.assignCategory(category)
     } catch (e: Exception) {
 
     }
 
-     open fun publishReport() {
+    open fun publishReport() {
         extent.flush()
 
 
     }
 
-     /**
-      * Function to empty the  result and screenshot folder
-      * @param
-      * folder name
-      */
-      fun emptyFolder(filepath: String) {
-         val file = File(filepath)
-         val myFiles: Array<String>?
-         if (file.isDirectory) {
-             myFiles = file.list()
-             for (i in myFiles!!.indices) {
-                 val myFile = File(file, myFiles[i])
-                 myFile.delete()
-             }
-         }
-     }
+    /**
+     * Function to empty the  result and screenshot folder
+     * @param
+     * folder name
+     */
+    fun emptyFolder(filepath: String) {
+        val file = File(filepath)
+        val myFiles: Array<String>?
+        if (file.isDirectory) {
+            myFiles = file.list()
+            for (i in myFiles!!.indices) {
+                val myFile = File(file, myFiles[i])
+                myFile.delete()
+            }
+        }
+    }
 
 
     /**
@@ -169,12 +172,39 @@ import java.util.*
 
     }
 
+
+    fun tapButtons(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement?, takescreenshot: Boolean) {
+        try {
+            waitForScreenToLoads(appiumDriver, element, 3)
+            element?.click()
+            Thread.sleep(2000)
+            if (takescreenshot) {
+                val screenshotpath = getScreenshot(appiumDriver, element?.text.toString())
+                println("Taken Screenshotpath is $screenshotpath")
+                test?.log(Status.INFO, "Screenshot Attached:-" + test?.addScreenCaptureFromPath(screenshotpath))
+
+            } else {
+
+            }
+        } catch (e: Exception) {
+        }
+
+    }
+
     /**
      * Function to wait until the screen is fully loaded
      * @param, drivertype , element and seconds to wait for page to load
      */
 
-    open fun waitForScreenToLoad(driver: AppiumDriver<MobileElement>, element: MobileElement, seconds: Int) {
+    open fun waitForScreenToLoad(driver: AppiumDriver<MobileElement>, element: MobileElement?, seconds: Int) {
+
+        val wait = WebDriverWait(driver, seconds.toLong())
+        wait.until<WebElement>(ExpectedConditions.visibilityOf(element))
+
+    }
+
+
+    open fun waitForScreenToLoads(driver: AppiumDriver<MobileElement>, element: MobileElement?, seconds: Int) {
 
         val wait = WebDriverWait(driver, seconds.toLong())
         wait.until<WebElement>(ExpectedConditions.visibilityOf(element))
@@ -212,31 +242,31 @@ import java.util.*
 
     }
 
-     /**
-      * Function to create a folder with the project path
-      * @param, Directory path
-      */
-     open fun extentResultFolder(path: String): String? {
-         var strManyDirectories: String? = null
-         try {
-             //  String strDirectoy = path;
-             strManyDirectories = path
+    /**
+     * Function to create a folder with the project path
+     * @param, Directory path
+     */
+    open fun extentResultFolder(path: String): String? {
+        var strManyDirectories: String? = null
+        try {
+            //  String strDirectoy = path;
+            strManyDirectories = path
 
-             // Create one directory
-             val
-             // Create multiple directories
-                     success = File(strManyDirectories).mkdirs()
-             if (success) {
-                 println("Directories: "
-                         + strManyDirectories + " created")
-             }
+            // Create one directory
+            val
+            // Create multiple directories
+                    success = File(strManyDirectories).mkdirs()
+            if (success) {
+                println("Directories: "
+                        + strManyDirectories + " created")
+            }
 
-         } catch (e: Exception) {//Catch exception if any
-             System.err.println("Error: " + e.message)
-         }
+        } catch (e: Exception) {//Catch exception if any
+            System.err.println("Error: " + e.message)
+        }
 
-         return strManyDirectories
-     }
+        return strManyDirectories
+    }
 
 
     /**
@@ -279,8 +309,7 @@ import java.util.*
 //                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
 //                .moveTo(PointOption.point(startX, endY)).release().perform()
 
-        PlatformTouchAction(driver).
-                press(PointOption.point(startX, startY))
+        PlatformTouchAction(driver).press(PointOption.point(startX, startY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
                 .moveTo(PointOption.point(startX, endY)).release().perform()
     }
@@ -297,55 +326,49 @@ import java.util.*
 
     }
 
-     /**
-      * Function to seek the video, you need pass the percentage of seeking
-      * @param driver
-      * @param element
-      * @param d
-      * @throws InterruptedException
-      */
+    /**
+     * Function to seek the video, you need pass the percentage of seeking
+     * @param driver
+     * @param element
+     * @param d
+     * @throws InterruptedException
+     */
 
-     fun  livevideoseeking(appiumdriver: AppiumDriver<MobileElement>,element:MobileElement,d:Double)
-     {
-            val startx = element.location.getX()
-            val endx = element.size.width
-            val yaxis = element.location.getY()
-            val moveToXDirectionAt = (endx * d).toInt()
+    fun livevideoseeking(appiumdriver: AppiumDriver<MobileElement>, element: MobileElement, d: Double) {
+        val startx = element.location.getX()
+        val endx = element.size.width
+        val yaxis = element.location.getY()
+        val moveToXDirectionAt = (endx * d).toInt()
 
-         PlatformTouchAction(appiumdriver).
-                 press(PointOption.point(startx, yaxis)).
-                 waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).
-                 moveTo(PointOption.point(moveToXDirectionAt,yaxis)).release().perform()
+        PlatformTouchAction(appiumdriver).press(PointOption.point(startx, yaxis)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(moveToXDirectionAt, yaxis)).release().perform()
 
 
-
-     }
-
-
-     /**
-     Function to enter the text into a textfeld
-     @param, driverType, element and string that's need to be entered
-      */
-
-     fun entersearchtext(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, searchkey: String)
-     {
-         element.sendKeys(searchkey)
-     }
+    }
 
 
-     /**
-      * Function to check whether an Element is present or not
-      */
+    /**
+    Function to enter the text into a textfeld
+    @param, driverType, element and string that's need to be entered
+     */
 
-     fun isElementPresent(driver: AppiumDriver<WebElement>, locatorKey: By): Boolean {
-         try {
-             driver.findElement(locatorKey)
-             return true
+    fun entersearchtext(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, searchkey: String) {
+        element.sendKeys(searchkey)
+    }
 
-         } catch (e: NoSuchElementException) {
-             return false
-         }
-     }
+
+    /**
+     * Function to check whether an Element is present or not
+     */
+
+    fun isElementPresent(driver: AppiumDriver<WebElement>, locatorKey: By): Boolean {
+        try {
+            driver.findElement(locatorKey)
+            return true
+
+        } catch (e: NoSuchElementException) {
+            return false
+        }
+    }
 
 
     /**
@@ -380,179 +403,363 @@ import java.util.*
 
     }
 
-     fun getTestResult(appiumDriver: AppiumDriver<MobileElement>,result: ITestResult)
-     {
-         try {
-             when {
-                 result.status == ITestResult.FAILURE -> {
+    fun getTestResult(appiumDriver: AppiumDriver<MobileElement>, result: ITestResult) {
+        try {
+            when {
+                result.status == ITestResult.FAILURE -> {
 
-                     test?.fail(MarkupHelper.createLabel(result.name + " Test Case is FAILED", ExtentColor.RED))
-                     test?.fail(result.throwable)
-                     try {
-                         val screenshotPath = getScreenshot(appiumDriver, result.name)
-                         test?.log(Status.FAIL, "Failed" + test?.addScreenCaptureFromPath(screenshotPath))
-                     } catch (e: Exception) {
-                         e.printStackTrace()
-                     }
+                    test?.fail(MarkupHelper.createLabel(result.name + " Test Case is FAILED", ExtentColor.RED))
+                    test?.fail(result.throwable)
+                    try {
+                        val screenshotPath = getScreenshot(appiumDriver, result.name)
+                        test?.log(Status.FAIL, "Failed" + test?.addScreenCaptureFromPath(screenshotPath))
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
 
-                 }
-                 result.status == ITestResult.SUCCESS -> test?.pass(MarkupHelper.createLabel(result.name + " Test Case is PASSED", ExtentColor.GREEN))
-                 result.status == ITestResult.SKIP -> {
-                     test?.skip(MarkupHelper.createLabel(result.name + " Test Case is SKIPPED", ExtentColor.YELLOW))
-                     test?.skip(result.throwable)
+                }
+                result.status == ITestResult.SUCCESS -> test?.pass(MarkupHelper.createLabel(result.name + " Test Case is PASSED", ExtentColor.GREEN))
+                result.status == ITestResult.SKIP -> {
+                    test?.skip(MarkupHelper.createLabel(result.name + " Test Case is SKIPPED", ExtentColor.YELLOW))
+                    test?.skip(result.throwable)
 
-                 }
-             }
-         } catch (e: NullPointerException) {
+                }
+            }
+        } catch (e: NullPointerException) {
 
-         }
+        }
 
-     }
-
-
-     /**
-      * function to create a ExtentReport
-      * @reportname
-      * @deviceOS, @deviceName, @deviceId
-      *
-      */
+    }
 
 
-     @Throws(Exception::class)
-     fun createrReportHive(reportname: String, deviceOS: String, deviceName: String, deviceId: String) {
+    /**
+     * function to create a ExtentReport
+     * @reportname
+     * @deviceOS, @deviceName, @deviceId
+     *
+     */
 
-         val curDate = Date()
-         println(curDate.toString())
+
+    @Throws(Exception::class)
+    fun createrReportHive(reportname: String, deviceOS: String, deviceName: String, deviceId: String) {
+
+        val curDate = Date()
+        println(curDate.toString())
 
         // val dateName = SimpleDateFormat("hh:mm").format(Date())
 
-         val reportfolder = extentResultFolder(absoluteFilePath)
-         println("reportfolder is $reportfolder")
+        val reportfolder = extentResultFolder(absoluteFilePath)
+        println("reportfolder is $reportfolder")
 
-         val subDirectory = "Results"
-         val resultsPaths: String
-         resultsPaths = extentResultFolder(subDirectory).toString()
-         val file = File(resultsPaths)
-         println("the Result path Folder is :- " + file.absolutePath)
-
-
-         htmlReporter = ExtentHtmlReporter(file.absolutePath + File.separator + reportname + ".html")//"_"+deviceName+"_"+deviceOS+ ".html");
-         extent = ExtentReports()
-         extent.attachReporter(htmlReporter)
-         htmlReporter.setAppendExisting(false)
-         extent.setSystemInfo("Device ID", deviceId)
-         extent.setSystemInfo("Firmware version", deviceOS)
-         extent.setSystemInfo("Device Name ", deviceName)
-         extent.setSystemInfo("Run Started on", curDate.toString())
+        val subDirectory = "Results"
+        val resultsPaths: String
+        resultsPaths = extentResultFolder(subDirectory).toString()
+        val file = File(resultsPaths)
+        println("the Result path Folder is :- " + file.absolutePath)
 
 
-         htmlReporter.config().chartVisibilityOnOpen = true
-         htmlReporter.config().documentTitle = "BBC News Android Report "
-         htmlReporter.config().reportName = "Automation Test Report"
-         htmlReporter.config().testViewChartLocation = ChartLocation.TOP
-         htmlReporter.config().theme = Theme.STANDARD
-         htmlReporter.config().timeStampFormat = "EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'"
+        htmlReporter = ExtentHtmlReporter(file.absolutePath + File.separator + reportname + ".html")//"_"+deviceName+"_"+deviceOS+ ".html");
+        extent = ExtentReports()
+        extent.attachReporter(htmlReporter)
+        htmlReporter.setAppendExisting(false)
+        extent.setSystemInfo("Device ID", deviceId)
+        extent.setSystemInfo("Firmware version", deviceOS)
+        extent.setSystemInfo("Device Name ", deviceName)
+        extent.setSystemInfo("Run Started on", curDate.toString())
 
 
-     }
+        htmlReporter.config().chartVisibilityOnOpen = true
+        htmlReporter.config().documentTitle = "BBC News Android Report "
+        htmlReporter.config().reportName = "Automation Test Report"
+        htmlReporter.config().testViewChartLocation = ChartLocation.TOP
+        htmlReporter.config().theme = Theme.STANDARD
+        htmlReporter.config().timeStampFormat = "EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'"
 
 
-     /**
-      * Function to scroll on TopStories - Videos and Stories carousel
-      * @param, driverType, element and path for screenshot to be taken
-      */
+    }
 
-     fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, element2: MobileElement) {
 
-         for (i in 0..20) {
-             try {
-                 waitForScreenToLoad(appiumDriver, element, 5)
-                 Thread.sleep(800)
-                 val elementtitle = element.text
-                 println(elementtitle)
-                 test?.log(Status.INFO,elementtitle)
-                 //                logger.log(LogStatus.INFO, "Snapshot below: "
-                 //                        + logger.addScreenCapture(capture_ScreenShots(appiumDriver, path, element_title)));
-                 //logger.log(LogStatus.INFO, "Snapshot below: "
-                 //      + logger.addScreenCapture(capture_ScreenShots(appiumDriver,element_title)));
-                 Thread.sleep(800)
-                 element2.isDisplayed
-                 test?.log(Status.INFO,element2.text)
-                 //element.click();
-                 break
-             } catch (e: Exception) {
-                 horizontalSwipe(appiumDriver)
+    /**
+     * Function to scroll on TopStories - Videos and Stories carousel
+     * @param, driverType, element and path for screenshot to be taken
+     */
 
-             }
+    fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, element2: MobileElement) {
 
-         }
-     }
+        for (i in 0..20) {
+            try {
+                waitForScreenToLoad(appiumDriver, element, 5)
+                Thread.sleep(800)
+                val elementtitle = element.text
+                println(elementtitle)
+                test?.log(Status.INFO, elementtitle)
+                //                logger.log(LogStatus.INFO, "Snapshot below: "
+                //                        + logger.addScreenCapture(capture_ScreenShots(appiumDriver, path, element_title)));
+                //logger.log(LogStatus.INFO, "Snapshot below: "
+                //      + logger.addScreenCapture(capture_ScreenShots(appiumDriver,element_title)));
+                Thread.sleep(800)
+                element2.isDisplayed
+                test?.log(Status.INFO, element2.text)
+                //element.click();
+                break
+            } catch (e: Exception) {
+                horizontalSwipe(appiumDriver)
 
-     /**
-      * Function to seek horizontal on the app.
-      * Yaxis remains horizontal
-      * StartXaxis and endXaxis are the two main parameters to swipe vertically
-      * @param, driverType
-      */
-     private fun horizontalSwipe(driver: AppiumDriver<MobileElement>) {
-         val dimension = driver.manage().window().size
-         val height = dimension.getHeight()
-         val width = dimension.getWidth()
-         val startXaxis = (width * 0.90).toInt()
-         val yaxis = (height * 0.20).toInt()
-         val endXaxis = (width * 0.10).toInt()
+            }
+
+        }
+    }
+
+    /**
+     * Function to seek horizontal on the app.
+     * Yaxis remains horizontal
+     * StartXaxis and endXaxis are the two main parameters to swipe vertically
+     * @param, driverType
+     */
+    private fun horizontalSwipe(driver: AppiumDriver<MobileElement>) {
+        val dimension = driver.manage().window().size
+        val height = dimension.getHeight()
+        val width = dimension.getWidth()
+        val startXaxis = (width * 0.90).toInt()
+        val yaxis = (height * 0.20).toInt()
+        val endXaxis = (width * 0.10).toInt()
 
 //         val action = TouchAction(driver)
 //         action.press(PointOption.point(startXaxis, Yaxis))
 //                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
 //                 .moveTo(PointOption.point(endXaxis, Yaxis)).release().perform()
 
-         PlatformTouchAction(driver).
-                 press(PointOption.point(startXaxis, yaxis))
-                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
-                 .moveTo(PointOption.point(endXaxis, yaxis)).release().perform()
+        PlatformTouchAction(driver).press(PointOption.point(startXaxis, yaxis))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                .moveTo(PointOption.point(endXaxis, yaxis)).release().perform()
 
 
+    }
 
-     }
+
+    /**
+     * Function to check, whether given element is selected or not
+     * @param, drivertype, element name
+     */
+    fun iselementSelected(element: MobileElement): Boolean {
+        return if (element.isSelected) {
+            test?.log(Status.INFO, "Element selected")
+            true
+
+        } else {
+            test?.log(Status.INFO, "Element not selected")
+            false
+
+        }
+    }
+
+    /**
+     * Function to enter the text into a textfeld
+     * @param, driverType, element and string that's need to be entered
+     */
+
+    fun enterText(element: MobileElement, searchkey: String) {
+        try {
+            element.sendKeys(searchkey)
+        } catch (e: Exception) {
+        }
+
+    }
+
+    /**
+     * function to get the element text
+     * @param, drivertype and element
+     */
+
+    fun getText(element: MobileElement): String {
+        return element.text
+    }
 
 
-     /**
-      * Function to check, whether given element is selected or not
-      * @param, drivertype, element name
-      */
-     fun iselementSelected( element: MobileElement): Boolean {
-         return if (element.isSelected) {
-             test?.log(Status.INFO, "Element selected")
-             true
+    /**
+     * Returns all png images from a directory in an array.
+     *
+     * @param directory                 the directory to start with
+     * @param descendIntoSubDirectories should we include sub directories?
+     * @return an ArrayList<String> containing all the files or nul if none are found..
+     * @throws IOException
+    </String> */
+    @Throws(IOException::class)
+    fun getAllImages(directory: File, descendIntoSubDirectories: Boolean): ArrayList<String>
+    {
+        val resultList = ArrayList<String>(256)
+        val f = directory.listFiles()
+        for (file in f!!) {
+            if (file != null && file.name.toLowerCase().endsWith(".png"))
+            {
+                resultList.add(file.canonicalPath)
+            }
+            if (descendIntoSubDirectories && file!!.isDirectory)
+            {
+                val tmp = getAllImages(file, true)
+                if (tmp != null)
+                {
+                    resultList.addAll(tmp)
+                }
+            }
+        }
+      if (resultList.size > 0)
+         return  resultList
+        else
+          return null!!
 
-         } else {
-             test?.log(Status.INFO, "Element not selected")
-             false
+    }
 
-         }
-     }
 
-     /**
-      * Function to enter the text into a textfeld
-      * @param, driverType, element and string that's need to be entered
-      */
+    /**
+     * Function which compare the images
+     *
+     * @throws IOException
+     */
 
-     fun enterText(element: MobileElement, searchkey: String) {
-         try {
-             element.sendKeys(searchkey)
-         } catch (e: Exception) {
-         }
+    @Throws(IOException::class)
+    fun comparetwoimages() {
+        val expected = File("./Screenshots/Before")
+        val actual = File("./Screenshots/After")
 
-     }
+        var expectedresults = ArrayList<String>()
+        expectedresults = getAllImages(expected, false)
+        val expectedimages = expectedresults.toTypedArray()
 
-     /**
-      * function to get the element text
-      * @param, drivertype and element
-      */
+        var actualresults: ArrayList<String> = ArrayList()
+        actualresults = getAllImages(actual, false)
+        val actualimages = actualresults.toArray(arrayOfNulls<String>(actualresults.size))
+        var i = 0
+        while (i < expectedimages.size && i < actualimages.size) {
+            println("Expected Image :=" + expectedimages[i])
+            println("Actual Image :=" + actualimages[i])
 
-     fun getText(element: MobileElement): String {
-         return element.text
-     }
+            compareImage(File(expectedimages[i]), File(actualimages[i]))
+            processImage(expectedimages[i], actualimages[i])
+            i++
 
-}
+
+        }
+    }
+
+
+        /**
+         * Function to compare two images and display the diffrence
+         * @param fileA
+         * @param fileB
+         * @return
+         */
+         fun compareImage(fileA: File, fileB: File): Float {
+
+            var percentage = 0f
+            try {
+                // take buffer data from both image files //
+                val biA = ImageIO.read(fileA)
+                val dbA = biA.getData().getDataBuffer()
+                val sizeA = dbA.getSize()
+                val biB = ImageIO.read(fileB)
+                val dbB = biB.getData().getDataBuffer()
+                val sizeB = dbB.getSize()
+                var count = 0
+                // compare data-buffer objects //
+                if (sizeA == sizeB) {
+
+                    for (i in 0 until sizeA) {
+
+                        if (dbA.getElem(i) === dbB.getElem(i)) {
+                            count = count + 1
+                        }
+
+                    }
+                    percentage = (count * 100 / sizeA).toFloat()
+                    println("Image Difference Percentage --> :- $percentage")
+                    test?.log(Status.PASS,"Image Difference Percentage --> :- " + percentage);
+
+                } else {
+                    println("Both the images are not of same size")
+                    // test.log(Status.FAIL,"Both the images are not of same size");
+                }
+
+            } catch (e: Exception) {
+                println("Failed to compare image files ...")
+            }
+
+            return percentage
+        }
+
+
+        /**
+         * Function to compare the images by pixel
+         * @param expected
+         * @param actual
+         */
+        private fun processImage(expected: String?, actual: String?) {
+            val imagesrc = Toolkit.getDefaultToolkit().getImage(expected)
+            val imagecom = Toolkit.getDefaultToolkit().getImage(actual)
+
+            try {
+                val grab1 = PixelGrabber(imagesrc, 0, 0, -1, -1, false)
+                val grab2 = PixelGrabber(imagecom, 0, 0, -1, -1, false)
+
+                var data1: IntArray? = null
+
+                if (grab1.grabPixels()) {
+                    val width = grab1.getWidth()
+                    val height = grab1.getHeight()
+                    data1 = IntArray(width * height)
+                    data1 = grab1.getPixels() as IntArray?
+                }
+
+                var data2: IntArray? = null
+
+                if (grab2.grabPixels()) {
+                    val width = grab2.getWidth()
+                    val height = grab2.getHeight()
+                    data2 = IntArray(width * height)
+                    data2 = grab2.getPixels() as IntArray?
+                }
+
+                println("Pixels equal: " + java.util.Arrays.equals(data1, data2))
+                test?.log(Status.INFO, "Pixels equal: " + java.util.Arrays.equals(data1, data2))
+
+            } catch (e1: InterruptedException) {
+                e1.printStackTrace()
+            }
+
+        }
+
+
+        /**
+         * Function to take screen of page using the Ashot API
+         * @param driver
+         * @param folder
+         * @param imagename
+         * @throws IOException
+         */
+        @Throws(IOException::class)
+        fun AshotScreenshot(driver: AndroidDriver<MobileElement>, folder: String, imagename: String) {
+            val dateName = SimpleDateFormat("dd-M-yyyy hh:mm").format(Date())
+            val Directory = "Screenshots"
+            val ScreenshotPaths = extentResultFolder(Directory)
+
+            val ScreenshotPathsdir = extentResultFolder(folder)
+
+            val file = File(ScreenshotPaths)
+            // success = (new File(strManyDirectories)).mkdirs();
+
+            val myScreenshot = AShot().takeScreenshot(driver)
+            val screenshotFolder = Paths.get(Directory, folder)
+            if (Files.notExists(screenshotFolder))
+                Files.createDirectory(screenshotFolder)
+            // To save the screenshot in desired location
+
+
+            ImageIO.write(myScreenshot.getImage(), "PNG",
+                     File(screenshotFolder.toString()+File.separator+imagename+dateName+".png"))
+
+
+        }
+
+
+    }
+
