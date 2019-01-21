@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement
 import io.appium.java_client.pagefactory.AndroidBy
 import io.appium.java_client.pagefactory.AndroidFindAll
 import io.appium.java_client.pagefactory.AndroidFindBy
+import org.openqa.selenium.support.FindBy
 
 class CommonPageObjects
 {
@@ -228,4 +229,8 @@ class CommonPageObjects
     var alert_text_uk = "UK Politics added to My News"
 
     var alert_text_business = "Business added to My News"
+
+
+
+
 }

@@ -4,6 +4,7 @@ import com.bbcnews.automation.commonfunctions.CommonFunctionKotlin
 
 
 import com.bbcnews.automation.pageobjects.*
+import com.bbcnews.automation.testutils.Testutility
 import io.appium.java_client.MobileElement
 import io.appium.java_client.android.AndroidDriver
 
@@ -18,26 +19,21 @@ import org.openqa.selenium.support.PageFactory
 import org.testng.Assert
 import org.testng.ITestResult
 import org.testng.annotations.*
-
 import java.io.File
 import java.io.IOException
 import java.net.URL
-import org.apache.tika.mime.MediaType.video
 
-
-
-class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
+class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 {
-
-
-    var capabilities = DesiredCapabilities()
-    var DeviceOsName: String? = null
-    var Deviceid: String? = null
-    var DeviceName: String? = null
-    var AppPath: String? = null
-    var AppiumPort: String? = null
-    lateinit var file: File
-    var commonFunctionKotlin = CommonFunctionKotlin()
+   private var capabilities = DesiredCapabilities()
+   private var deviceOsName: String? = null
+   private var deviceid: String? = null
+   private  var deviceName: String? = null
+   private  var appPath: String? = null
+   private var appiumPort: String? = null
+   private  lateinit var file: File
+    private var commonFunctionKotlin = CommonFunctionKotlin()
+    private var testutility = Testutility()
     private lateinit var homePageObject: HomePageObject
     private lateinit var androidDriver: AndroidDriver<MobileElement>
     private lateinit var myNewsPageObject: MyNewsPageObject
@@ -45,17 +41,18 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
     private lateinit var vidoePageObject: VidoePageObject
     private lateinit var popularPageObject: PopularPageObject
     private lateinit var basePageObjectModel: BasePageObject
-    lateinit var commonpageobjects: CommonPageObjects
+    private lateinit var commonpageobjects: CommonPageObjects
 
 
 
 //    private val curDate = Date()
 //    private val format = SimpleDateFormat("yyyy-MM-dd")
 //    private val DateToStr = format.format(curDate)
+    var workingDirectory = System.getProperty("user.dir")
     private val screenshotpath = "$workingDirectory/Screenshots/"
 
     @BeforeTest
-    fun RunTest() {
+    fun runTest() {
 
         try {
 
@@ -73,16 +70,16 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
 
     private fun readDeviceDetailsCommandPrompt() {
         try {
-            DeviceOsName = System.getProperty("DeviceOS")
-            Deviceid = System.getProperty("DeviceID")
-            DeviceName = System.getProperty("DeviceName")
-            AppPath = System.getProperty("AppPath")
-            AppiumPort = System.getProperty("AppiumPort")
-            println("Passed The Device OS is $DeviceOsName")
-            println("Passed The Device ID is $Deviceid")
-            println("Passed The Device Name is $DeviceName")
-            println("Passed The Appium port is $AppiumPort")
-            println("Passed The Application path  is $AppPath")
+            deviceOsName = System.getProperty("DeviceOS")
+            deviceid = System.getProperty("DeviceID")
+            deviceName = System.getProperty("DeviceName")
+            appPath = System.getProperty("AppPath")
+            appiumPort = System.getProperty("AppiumPort")
+            println("Passed The Device OS is $deviceOsName")
+            println("Passed The Device ID is $deviceid")
+            println("Passed The Device Name is $deviceName")
+            println("Passed The Appium port is $appiumPort")
+            println("Passed The Application path  is $appPath")
         } catch (e: Exception) {
             e.printStackTrace()
 
@@ -98,15 +95,15 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
     private fun setUP() {
         try {
             //  appiumStart.startAppium(Integer.parseInt(Appium_Port));
-            val appiumurl = "http://127.0.0.1:$AppiumPort/wd/hub"
+            val appiumurl = "http://127.0.0.1:$appiumPort/wd/hub"
             println("Appium Server Address : - $appiumurl")
             capabilities = DesiredCapabilities()
-            capabilities.setCapability(MobileCapabilityType.UDID, Deviceid)
+            capabilities.setCapability(MobileCapabilityType.UDID, deviceid)
             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "bbcnews")
             capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2")
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android")
             capabilities.setCapability("appiumversion", "1.8.1")
-            capabilities.setCapability("app", AppPath) //"/Users/ramakh02/Desktop/tools/APK/BBCNews-5.5.0.35.apk");
+            capabilities.setCapability("app", appPath) //"/Users/ramakh02/Desktop/tools/APK/BBCNews-5.5.0.35.apk");
             //it's not mandatory to pass OS version of the device
             // capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,Deviceos_Name);
             capabilities.setCapability("appPackage", "bbc.mobile.news.uk.internal")
@@ -144,10 +141,10 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
             PageFactory.initElements(AppiumFieldDecorator(androidDriver),commonpageobjects)
 
 
-            commonFunctionKotlin.emptyFolder(screenshotpath)
+            testutility.emptyFolder(screenshotpath)
 
             // commonFunctionKotlin.startReport("SmokeTest");
-            commonFunctionKotlin.createrReportHive("SmokeTest", DeviceOsName.toString(), DeviceName.toString(), Deviceid.toString())
+            commonFunctionKotlin.createrReportHive("SmokeTest", deviceOsName.toString(), deviceName.toString(), deviceid.toString())
             //createrReportHive("SmokeTest", Deviceos_Name, Device_Name, Device_id)
 
             androidDriver.context("NATIVE_APP")
@@ -191,15 +188,15 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
     @Throws(IOException::class)
     fun testtakeScreenshotsofPages() {
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "Before", "topstories")
+        testutility.AshotScreenshot(androidDriver, "Before", "topstories")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "Before", "mynews")
+        testutility.AshotScreenshot(androidDriver, "Before", "mynews")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "Before", "popular")
+        testutility.AshotScreenshot(androidDriver, "Before", "popular")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.video, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "Before", "video")
+        testutility.AshotScreenshot(androidDriver, "Before", "video")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.menubutton, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "Before", "menu")
+        testutility.AshotScreenshot(androidDriver, "Before", "menu")
         commonFunctionKotlin.navigateBack(androidDriver)
     }
 
@@ -234,9 +231,9 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
         commonFunctionKotlin.startTest("MyNews", "Location Based Topics in MyNews", "Smoke")
         commonFunctionKotlin.tapButton(androidDriver,basePageObjectModel.mynews,false)
         commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mynews_startButton, false)
-        commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.allow_location,false);
-        commonFunctionKotlin.tapButton(androidDriver,myNewsPageObject.allowlocation_premission,false);
-        commonFunctionKotlin.navigateBack(androidDriver);
+        commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.allow_location,false)
+        commonFunctionKotlin.tapButton(androidDriver,myNewsPageObject.allowlocation_premission,false)
+        commonFunctionKotlin.navigateBack(androidDriver)
     }
 
 
@@ -309,9 +306,9 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("MyNews", "Adding topics to MyNews", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mynews_startButton, false)
-            commonFunctionKotlin.tapButton(androidDriver,myNewsPageObject.addtopics,false);
-            Assert.assertEquals("London",myNewsPageObject.localnews_displayed.getText());
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed);
+            commonFunctionKotlin.tapButton(androidDriver,myNewsPageObject.addtopics,false)
+            Assert.assertEquals("London",myNewsPageObject.localnews_displayed.text)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed)
             commonFunctionKotlin.scrolltoElement(androidDriver, myNewsPageObject.Walestopic)
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Walestopic, false)
             commonFunctionKotlin.scrolltoElement(androidDriver, myNewsPageObject.Asiatopic)
@@ -386,7 +383,7 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
             Assert.assertTrue(basePageObjectModel.video.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.livebbchannel)
             commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.bbcnewsChannel, false)
-            commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.live_media_item_caption);
+            commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.live_media_item_caption)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObjectModel.navigate_back)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObjectModel.sharestory)
             commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.smp_placeholder_play_button, false)
@@ -422,15 +419,15 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
     fun testtakescreenshotafter()
     {
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "After", "topstories")
+        testutility.AshotScreenshot(androidDriver, "After", "topstories")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "After", "mynews")
+        testutility.AshotScreenshot(androidDriver, "After", "mynews")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "After", "popular")
+        testutility.AshotScreenshot(androidDriver, "After", "popular")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.video, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "After", "video")
+        testutility.AshotScreenshot(androidDriver, "After", "video")
         commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.menubutton, false)
-        commonFunctionKotlin.AshotScreenshot(androidDriver, "After", "menu")
+        testutility.AshotScreenshot(androidDriver, "After", "menu")
         commonFunctionKotlin.navigateBack(androidDriver)
     }
 
@@ -457,8 +454,8 @@ class BBCNewsSmokeTestKotlin : CommonFunctionKotlin()
     @AfterTest
     fun tearDown() {
         commonFunctionKotlin.publishReport()
-        commonFunctionKotlin.emptyFolder("./Screenshots/Before")
-        commonFunctionKotlin.emptyFolder("./Screenshots/After")
+        testutility.emptyFolder("./Screenshots/Before")
+        testutility.emptyFolder("./Screenshots/After")
         androidDriver.closeApp()
         androidDriver.removeApp("bbc.mobile.news.uk.internal")
         androidDriver.quit()

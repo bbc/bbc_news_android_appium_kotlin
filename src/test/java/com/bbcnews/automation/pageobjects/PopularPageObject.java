@@ -1,5 +1,6 @@
 package com.bbcnews.automation.pageobjects;
 
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
@@ -26,7 +27,7 @@ public class PopularPageObject {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Most Watched']")
     public MobileElement popular_mostwatched;
 
-   // @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='1']/android.view.ViewGroup[@index='0']/android.widget.ImageView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/content_card_image') and @index='0']")
+    // @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='1']/android.view.ViewGroup[@index='0']/android.widget.ImageView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/content_card_image') and @index='0']")
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/content_card_ordered_badge') and @text='1']")
     public MobileElement populararticle;
 
@@ -51,12 +52,14 @@ public class PopularPageObject {
     @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_link")
     public MobileElement headline_link;
 
-    public String popularlinks[] =
+    public String mostreadpopularlinks[] =
             {       "bbc.mobile.news.uk.internal:id/image_item_badge",
                     "bbc.mobile.news.uk.internal:id/headline_info",
                     "bbc.mobile.news.uk.internal:id/headline_title",
-                    "bbc.mobile.news.uk.internal:id/headline_info",
-                    "bbc.mobile.news.uk.internal:id/headline_link"
+                    //"bbc.mobile.news.uk.internal:id/headline_author_title",
+                    "bbc.mobile.news.uk.internal:id/headline_link",
+                     "bbc.mobile.news.uk.internal:id/image_item_caption",
+                    //  "bbc.mobile.news.uk.internal:id/headline_author_name"
             };
 
 

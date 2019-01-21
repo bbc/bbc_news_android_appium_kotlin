@@ -10,6 +10,8 @@ public class MyNewsPageObject {
 
     }
 
+
+
     @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/title")
     public MobileElement mynewstitle;
 
@@ -64,11 +66,11 @@ public class MyNewsPageObject {
     @AndroidFindBy(accessibility = "Manage your topics")
     public MobileElement mynews_managetopics;
 
-    public String mynewstitle_text="Add Topics to create your own personal news feed";
+    public  String mynewstitle_text="Add Topics to create your own personal news feed";
 
-    public String mynewssummary_text="All the latest stories from your topics will appear here.";
+    public  String mynewssummary_text="All the latest stories from your topics will appear here.";
 
-    public String mytopic_emptyview_text="Your added topics will be displayed here";
+    public  String mytopic_emptyview_text="Your added topics will be displayed here";
 
     @AndroidFindBy(accessibility = "Add topic")
     public  MobileElement mynews_addtopics;

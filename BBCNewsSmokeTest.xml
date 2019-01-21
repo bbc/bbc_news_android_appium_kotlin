@@ -9,5 +9,4 @@
             <class name="com.bbcnews.automation.scripts.BBCNewsSmokeTestKotlin" />
         </classes>
     </test>
-
    </suite> <!-- Suite -->

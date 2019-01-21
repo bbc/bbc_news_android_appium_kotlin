@@ -4,7 +4,6 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.remote.MobileCapabilityType;
 
 public class HomePageObject {
 
@@ -57,6 +56,9 @@ public class HomePageObject {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='UK Politics']")
     public MobileElement UKPolitics_topheading;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Business']")
+    public MobileElement Business_topics;
+
     @AndroidFindBy(accessibility = "Button:Videos of the day")
     public MobileElement videooftheday_button;
 
@@ -69,7 +71,7 @@ public class HomePageObject {
     @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/newstream_promo_counter")
     public MobileElement promocounter;
 
-   // @AndroidFindBy(xpath = "android.widget.TextView[@text='WATCH']")
+    // @AndroidFindBy(xpath = "android.widget.TextView[@text='WATCH']")
     @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_watch_label")
     public MobileElement watchvideo;
 

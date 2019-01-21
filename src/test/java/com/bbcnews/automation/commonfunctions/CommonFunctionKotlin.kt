@@ -116,22 +116,7 @@ open class CommonFunctionKotlin {
 
     }
 
-    /**
-     * Function to empty the  result and screenshot folder
-     * @param
-     * folder name
-     */
-    fun emptyFolder(filepath: String) {
-        val file = File(filepath)
-        val myFiles: Array<String>?
-        if (file.isDirectory) {
-            myFiles = file.list()
-            for (i in myFiles!!.indices) {
-                val myFile = File(file, myFiles[i])
-                myFile.delete()
-            }
-        }
-    }
+
 
 
     /**
@@ -278,7 +263,7 @@ open class CommonFunctionKotlin {
         for (i in 0..20) {
             try {
                 element.isDisplayed
-                element.click()
+                //element.click()
                 break
             } catch (e: Exception) {
                 verticalSwipe(appiumDriver)
@@ -351,7 +336,7 @@ open class CommonFunctionKotlin {
     @param, driverType, element and string that's need to be entered
      */
 
-    fun entersearchtext(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, searchkey: String) {
+    fun entersearchtext(element: MobileElement, searchkey: String) {
         element.sendKeys(searchkey)
     }
 
@@ -360,12 +345,14 @@ open class CommonFunctionKotlin {
      * Function to check whether an Element is present or not
      */
 
-    fun isElementPresent(driver: AppiumDriver<WebElement>, locatorKey: By): Boolean {
+    fun isElementPresent(appiumDriver: AppiumDriver<MobileElement>, locatorKey: By): Boolean {
         try {
-            driver.findElement(locatorKey)
+            appiumDriver.findElement(locatorKey)
+            test?.log(Status.PASS, appiumDriver.findElement(locatorKey).getText() + "Element Present")
             return true
 
         } catch (e: NoSuchElementException) {
+            test?.log(Status.INFO, appiumDriver.findElement(locatorKey).getText() + "Element Not Present")
             return false
         }
     }
@@ -484,25 +471,26 @@ open class CommonFunctionKotlin {
      * @param, driverType, element and path for screenshot to be taken
      */
 
-    fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement, element2: MobileElement) {
-
+    fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement,
+                             elements: Array<String>, element2: MobileElement
+    ) {
+        val flag = false
         for (i in 0..20) {
             try {
                 waitForScreenToLoad(appiumDriver, element, 5)
                 Thread.sleep(800)
-                val elementtitle = element.text
-                println(elementtitle)
-                test?.log(Status.INFO, elementtitle)
-                //                logger.log(LogStatus.INFO, "Snapshot below: "
-                //                        + logger.addScreenCapture(capture_ScreenShots(appiumDriver, path, element_title)));
-                //logger.log(LogStatus.INFO, "Snapshot below: "
-                //      + logger.addScreenCapture(capture_ScreenShots(appiumDriver,element_title)));
+                val element_title = element.getText()
+                test?.log(Status.INFO, element_title)
+                for (j in elements.indices) {
+                    isElementPresent(appiumDriver, By.id(elements[j]))
+                    test?.log(Status.PASS, elements[j])
+                }
                 Thread.sleep(800)
-                element2.isDisplayed
-                test?.log(Status.INFO, element2.text)
+                element2.isDisplayed()
                 //element.click();
                 break
             } catch (e: Exception) {
+
                 horizontalSwipe(appiumDriver)
 
             }
@@ -555,7 +543,7 @@ open class CommonFunctionKotlin {
 
     /**
      * Function to enter the text into a textfeld
-     * @param, driverType, element and string that's need to be entered
+     * @param, element and string that's need to be entered
      */
 
     fun enterText(element: MobileElement, searchkey: String) {
@@ -568,7 +556,7 @@ open class CommonFunctionKotlin {
 
     /**
      * function to get the element text
-     * @param, drivertype and element
+     * @param, element
      */
 
     fun getText(element: MobileElement): String {
@@ -597,7 +585,7 @@ open class CommonFunctionKotlin {
             if (descendIntoSubDirectories && file!!.isDirectory)
             {
                 val tmp = getAllImages(file, true)
-                if (tmp != null)
+                if (true)
                 {
                     resultList.addAll(tmp)
                 }
@@ -612,7 +600,7 @@ open class CommonFunctionKotlin {
 
 
     /**
-     * Function which compare the images
+     * Function which compare the two images bi pixels and by dimension
      *
      * @throws IOException
      */
@@ -706,7 +694,7 @@ open class CommonFunctionKotlin {
                 if (grab1.grabPixels()) {
                     val width = grab1.getWidth()
                     val height = grab1.getHeight()
-                    data1 = IntArray(width * height)
+                    //data1 = IntArray(width * height)
                     data1 = grab1.getPixels() as IntArray?
                 }
 
@@ -715,7 +703,7 @@ open class CommonFunctionKotlin {
                 if (grab2.grabPixels()) {
                     val width = grab2.getWidth()
                     val height = grab2.getHeight()
-                    data2 = IntArray(width * height)
+                    //data2 = IntArray(width * height)
                     data2 = grab2.getPixels() as IntArray?
                 }
 
@@ -730,7 +718,7 @@ open class CommonFunctionKotlin {
 
 
         /**
-         * Function to take screen of page using the Ashot API
+         * Function to take screenshot of page using the Ashot API
          * @param driver
          * @param folder
          * @param imagename
@@ -739,16 +727,16 @@ open class CommonFunctionKotlin {
         @Throws(IOException::class)
         fun AshotScreenshot(driver: AndroidDriver<MobileElement>, folder: String, imagename: String) {
             val dateName = SimpleDateFormat("dd-M-yyyy hh:mm").format(Date())
-            val Directory = "Screenshots"
-            val ScreenshotPaths = extentResultFolder(Directory)
+            val directory = "Screenshots"
+            val screenshotPaths = extentResultFolder(directory)
 
-            val ScreenshotPathsdir = extentResultFolder(folder)
+            extentResultFolder(folder)
 
-            val file = File(ScreenshotPaths)
+            File(screenshotPaths)
             // success = (new File(strManyDirectories)).mkdirs();
 
             val myScreenshot = AShot().takeScreenshot(driver)
-            val screenshotFolder = Paths.get(Directory, folder)
+            val screenshotFolder = Paths.get(directory, folder)
             if (Files.notExists(screenshotFolder))
                 Files.createDirectory(screenshotFolder)
             // To save the screenshot in desired location
@@ -759,7 +747,6 @@ open class CommonFunctionKotlin {
 
 
         }
-
 
     }
 
