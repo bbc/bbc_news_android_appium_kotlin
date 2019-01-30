@@ -14,13 +14,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.imageio.ImageIO
 
-class Testutility
-{
+class Testutility {
     /**
      * Function to create a folder with the project path
      * @param, Directory path
      */
-    open fun extentResultFolder(path: String): String? {
+    fun extentResultFolder(path: String): String? {
         var strManyDirectories: String? = null
         try {
             //  String strDirectoy = path;
@@ -53,12 +52,12 @@ class Testutility
         val expected = File("./Screenshots/Before")
         val actual = File("./Screenshots/After")
 
-        var expectedresults = ArrayList<String>()
-        expectedresults = getAllImages(expected, false)
+        //var expectedresults = ArrayList<String>()
+       var  expectedresults = getAllImages(expected, false)
         val expectedimages = expectedresults.toTypedArray()
 
-        var actualresults: ArrayList<String> = ArrayList()
-        actualresults = getAllImages(actual, false)
+       // var actualresults: ArrayList<String> = ArrayList()
+        var actualresults = getAllImages(actual, false)
         val actualimages = actualresults.toArray(arrayOfNulls<String>(actualresults.size))
         var i = 0
         while (i < expectedimages.size && i < actualimages.size) {
@@ -83,26 +82,22 @@ class Testutility
      * @throws IOException
     </String> */
     @Throws(IOException::class)
-    fun getAllImages(directory: File, descendIntoSubDirectories: Boolean): ArrayList<String>
-    {
+    fun getAllImages(directory: File, descendIntoSubDirectories: Boolean): ArrayList<String> {
         val resultList = ArrayList<String>(256)
         val f = directory.listFiles()
         for (file in f!!) {
-            if (file != null && file.name.toLowerCase().endsWith(".png"))
-            {
+            if (file != null && file.name.toLowerCase().endsWith(".png")) {
                 resultList.add(file.canonicalPath)
             }
-            if (descendIntoSubDirectories && file!!.isDirectory)
-            {
+            if (descendIntoSubDirectories && file!!.isDirectory) {
                 val tmp = getAllImages(file, true)
-                if (true)
-                {
+                if (true) {
                     resultList.addAll(tmp)
                 }
             }
         }
         if (resultList.size > 0)
-            return  resultList
+            return resultList
         else
             return null!!
 
@@ -138,7 +133,7 @@ class Testutility
                 }
                 percentage = (count * 100 / sizeA).toFloat()
                 println("Image Difference Percentage --> :- $percentage")
-               // test?.log(Status.PASS,"Image Difference Percentage --> :- " + percentage);
+                // test?.log(Status.PASS,"Image Difference Percentage --> :- " + percentage);
 
             } else {
                 println("Both the images are not of same size")
@@ -169,8 +164,8 @@ class Testutility
             var data1: IntArray? = null
 
             if (grab1.grabPixels()) {
-                val width = grab1.getWidth()
-                val height = grab1.getHeight()
+           //     val width = grab1.getWidth()
+             //   val height = grab1.getHeight()
                 //data1 = IntArray(width * height)
                 data1 = grab1.getPixels() as IntArray?
             }
@@ -178,14 +173,14 @@ class Testutility
             var data2: IntArray? = null
 
             if (grab2.grabPixels()) {
-                val width = grab2.getWidth()
-                val height = grab2.getHeight()
+             //   val width = grab2.getWidth()
+               // val height = grab2.getHeight()
                 //data2 = IntArray(width * height)
                 data2 = grab2.getPixels() as IntArray?
             }
 
             println("Pixels equal: " + java.util.Arrays.equals(data1, data2))
-          //  test?.log(Status.INFO, "Pixels equal: " + java.util.Arrays.equals(data1, data2))
+            //  test?.log(Status.INFO, "Pixels equal: " + java.util.Arrays.equals(data1, data2))
 
         } catch (e1: InterruptedException) {
             e1.printStackTrace()
@@ -220,7 +215,7 @@ class Testutility
 
 
         ImageIO.write(myScreenshot.getImage(), "PNG",
-                File(screenshotFolder.toString()+File.separator+imagename+dateName+".png"))
+                File(screenshotFolder.toString() + File.separator + imagename + dateName + ".png"))
 
 
     }
@@ -240,5 +235,6 @@ class Testutility
                 myFile.delete()
             }
         }
+
     }
 }

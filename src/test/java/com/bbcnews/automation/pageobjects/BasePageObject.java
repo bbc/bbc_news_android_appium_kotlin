@@ -344,7 +344,7 @@ public class BasePageObject {
 
 
     //@FindBy(xpath="//*[contains(text(), 'Terms of Use')]")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms of Use']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms of use']")
     public MobileElement termsconditions;
 
     //@FindBy(xpath="//*[contains(text(), 'Privacy policy')]")

@@ -53,18 +53,18 @@ public class PopularPageObject {
     public MobileElement headline_link;
 
     public String mostreadpopularlinks[] =
-            {       "bbc.mobile.news.uk.internal:id/image_item_badge",
+            {      // "bbc.mobile.news.uk.internal:id/image_item_badge",
                     "bbc.mobile.news.uk.internal:id/headline_info",
                     "bbc.mobile.news.uk.internal:id/headline_title",
                     //"bbc.mobile.news.uk.internal:id/headline_author_title",
                     "bbc.mobile.news.uk.internal:id/headline_link",
-                     "bbc.mobile.news.uk.internal:id/image_item_caption",
+                    // "bbc.mobile.news.uk.internal:id/image_item_caption",
                     //  "bbc.mobile.news.uk.internal:id/headline_author_name"
             };
 
 
     //@AndroidFindBy(xpath = "//android.widget.FrameLayout[2]/android.view.ViewGroup[0]/android.widget.ImageView[@index='0']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='3' and @index='1']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='1' and @index='1']")
     public MobileElement mostRead_article;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Most Popular']")
@@ -87,6 +87,10 @@ public class PopularPageObject {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Most Popular']")
     public MobileElement mostpopular_text;
+
+
+    @AndroidFindBy(xpath="//*[@content-desc='Media length' or @text='3']")
+    public MobileElement mostwatchedartcilevideo;
 
 
 

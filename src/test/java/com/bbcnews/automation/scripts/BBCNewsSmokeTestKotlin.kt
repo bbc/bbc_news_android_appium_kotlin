@@ -58,7 +58,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 
             readDeviceDetailsCommandPrompt()
             setUP()
-            launchBBCNews()
+            initialiseobjects()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -120,7 +120,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      *
      * function to initialise the page objects for Home page, Video page, popular page
      */
-   private fun launchBBCNews() {
+   private fun initialiseobjects() {
         try {
             homePageObject = HomePageObject()
             PageFactory.initElements(AppiumFieldDecorator(androidDriver), homePageObject)
@@ -184,27 +184,27 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     }
 
 
-    @Test(priority = 2, description = "takes the screenshot of the topstories, mynews, popular,video and menu page")
-    @Throws(IOException::class)
-    fun testtakeScreenshotsofPages() {
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
-        testutility.AshotScreenshot(androidDriver, "Before", "topstories")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)
-        testutility.AshotScreenshot(androidDriver, "Before", "mynews")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)
-        testutility.AshotScreenshot(androidDriver, "Before", "popular")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.video, false)
-        testutility.AshotScreenshot(androidDriver, "Before", "video")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.menubutton, false)
-        testutility.AshotScreenshot(androidDriver, "Before", "menu")
-        commonFunctionKotlin.navigateBack(androidDriver)
-    }
+//    @Test(priority = 2, description = "takes the screenshot of the topstories, mynews, popular,video and menu page")
+//    @Throws(IOException::class)
+//    fun testtakeScreenshotsofPages() {
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
+//        testutility.AshotScreenshot(androidDriver, "Before", "topstories")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)
+//        testutility.AshotScreenshot(androidDriver, "Before", "mynews")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)
+//        testutility.AshotScreenshot(androidDriver, "Before", "popular")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.video, false)
+//        testutility.AshotScreenshot(androidDriver, "Before", "video")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.menubutton, false)
+//        testutility.AshotScreenshot(androidDriver, "Before", "menu")
+//        commonFunctionKotlin.navigateBack(androidDriver)
+//    }
 
     /**
      * after app launches, checks the top stories page and assertion
      */
 
-    @Test(priority = 3, description = "Check the links on the Home page after app launched")
+    @Test(priority = 2, description = "Check the links on the Home page after app launched")
     fun testCheckHomePage() {
         try {
             commonFunctionKotlin.startTest("HomePage", "Checking the HomePage", "Smoke")
@@ -225,7 +225,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * checks the mynews page by allowing the location services
      */
 
-    @Test(priority = 4, description = "checking the location services based topics ")
+    @Test(priority = 3, description = "checking the location services based topics ")
     fun testAllowLocationBasedTopic()
     {
         commonFunctionKotlin.startTest("MyNews", "Location Based Topics in MyNews", "Smoke")
@@ -241,7 +241,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * checks the popular page most read
      */
-    @Test(priority = 5, description = "Test to check the  popular page")
+    @Test(priority = 4, description = "Test to check the  popular page")
     fun testPopularPage() {
 
         try {
@@ -260,7 +260,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * checks the popular most watched
      */
 
-    @Test(priority = 6, description = "checking that most watched displayed in popular page")
+    @Test(priority = 5, description = "checking that most watched displayed in popular page")
     fun testcheckMostWatched() {
         try {
             commonFunctionKotlin.startTest("PopularPage", "Checking most watched displayed the Popular", "Smoke")
@@ -275,7 +275,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      *
      */
 
-    @Test(priority = 7, description = "Test to check the Mynews page")
+    @Test(priority = 6, description = "Test to check the Mynews page")
     @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
     fun testMyNewsPage() {
@@ -299,7 +299,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * Adding the topics to MyNews
      */
-    @Test(priority = 8, description = "Test to check the adding the topics to MyNews page")
+    @Test(priority = 7, description = "Test to check the adding the topics to MyNews page")
     @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
     fun testAddingTopicstoMyNewsPage() {
@@ -319,7 +319,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         }
 
     }
-    @Test(priority = 9, description = "Test to check whether selected topics displayed under MyTopics page")
+    @Test(priority = 8, description = "Test to check whether selected topics displayed under MyTopics page")
     @Story("MyTopics")
     @Severity(SeverityLevel.CRITICAL)
     fun testCheckAddedTopicsUnderMyTopics() {
@@ -333,7 +333,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         }
     }
 
-    @Test(priority = 10, description = "Test to check whether added topics displayed under MyNews page")
+    @Test(priority = 9, description = "Test to check whether added topics displayed under MyNews page")
     @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
     fun testCheckAddedTopicsUnderMyNews() {
@@ -349,7 +349,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * Open the Menu items and assert whether links are displayed properly
      */
-    @Test(priority = 11, description = "Test to Check the Menu Options ")
+    @Test(priority = 10, description = "Test to Check the Menu Options ")
     @Story("Menu")
     @Severity(SeverityLevel.CRITICAL)
     fun testMenuPage() {
@@ -372,7 +372,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * check the live video on video page
      */
 
-    @Test(priority = 12, description = "Test to check the Video page and selecting the live video for playback and asserting the playback controls")
+    @Test(priority = 11, description = "Test to check the Video page and selecting the live video for playback and asserting the playback controls")
     @Story("VideoPage")
     @Severity(SeverityLevel.CRITICAL)
     fun testVideoPage() {
@@ -395,7 +395,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         }
     }
 
-    @Test(priority = 13, description = "Test to check the Search and Search Result")
+    @Test(priority = 12, description = "Test to check the Search and Search Result")
     fun testSearchTopics()
     {
         try {
@@ -414,32 +414,32 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         }
     }
 
-    @Test(priority = 14, description = "takes the screenshot of the topstories, mynews, popular,video and menu page")
-    @Throws(IOException::class)
-    fun testtakescreenshotafter()
-    {
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
-        testutility.AshotScreenshot(androidDriver, "After", "topstories")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)
-        testutility.AshotScreenshot(androidDriver, "After", "mynews")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)
-        testutility.AshotScreenshot(androidDriver, "After", "popular")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.video, false)
-        testutility.AshotScreenshot(androidDriver, "After", "video")
-        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.menubutton, false)
-        testutility.AshotScreenshot(androidDriver, "After", "menu")
-        commonFunctionKotlin.navigateBack(androidDriver)
-    }
-
-
-    @Test(priority = 15, description = "Compares the images")
-    @Throws(IOException::class)
-    fun testcomparetheimages()
-    {
-        commonFunctionKotlin.startTest("CompraeImage", "Compares the HomePage", "Smoke")
-        commonFunctionKotlin.comparetwoimages()
-
-    }
+//    @Test(priority = 14, description = "takes the screenshot of the topstories, mynews, popular,video and menu page")
+//    @Throws(IOException::class)
+//    fun testtakescreenshotafter()
+//    {
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
+//        testutility.AshotScreenshot(androidDriver, "After", "topstories")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)
+//        testutility.AshotScreenshot(androidDriver, "After", "mynews")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)
+//        testutility.AshotScreenshot(androidDriver, "After", "popular")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.video, false)
+//        testutility.AshotScreenshot(androidDriver, "After", "video")
+//        commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.menubutton, false)
+//        testutility.AshotScreenshot(androidDriver, "After", "menu")
+//        commonFunctionKotlin.navigateBack(androidDriver)
+//    }
+//
+//
+//    @Test(priority = 15, description = "Compares the images")
+//    @Throws(IOException::class)
+//    fun testcomparetheimages()
+//    {
+//        commonFunctionKotlin.startTest("CompraeImage", "Compares the HomePage", "Smoke")
+//        commonFunctionKotlin.comparetwoimages()
+//
+//    }
 
     @AfterMethod
     fun getResult(result: ITestResult)

@@ -12,10 +12,12 @@ import com.aventstack.extentreports.reporter.configuration.Theme
 import com.bbcnews.automation.testutils.PlatformTouchAction
 import io.appium.java_client.AppiumDriver
 import io.appium.java_client.MobileElement
+import io.appium.java_client.TouchAction
 import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.android.nativekey.AndroidKey
 import io.appium.java_client.android.nativekey.KeyEvent
 import io.appium.java_client.touch.WaitOptions
+import io.appium.java_client.touch.offset.ElementOption
 import io.appium.java_client.touch.offset.PointOption
 import org.apache.commons.io.FileUtils
 import org.openqa.selenium.*
@@ -158,23 +160,23 @@ open class CommonFunctionKotlin {
     }
 
 
-    fun tapButtons(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement?, takescreenshot: Boolean) {
-        try {
-            waitForScreenToLoads(appiumDriver, element, 3)
-            element?.click()
-            Thread.sleep(2000)
-            if (takescreenshot) {
-                val screenshotpath = getScreenshot(appiumDriver, element?.text.toString())
-                println("Taken Screenshotpath is $screenshotpath")
-                test?.log(Status.INFO, "Screenshot Attached:-" + test?.addScreenCaptureFromPath(screenshotpath))
-
-            } else {
-
-            }
-        } catch (e: Exception) {
-        }
-
-    }
+//    fun tapButtons(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement?, takescreenshot: Boolean) {
+//        try {
+//            waitForScreenToLoads(appiumDriver, element, 3)
+//            element?.click()
+//            Thread.sleep(2000)
+//            if (takescreenshot) {
+//                val screenshotpath = getScreenshot(appiumDriver, element?.text.toString())
+//                println("Taken Screenshotpath is $screenshotpath")
+//                test?.log(Status.INFO, "Screenshot Attached:-" + test?.addScreenCaptureFromPath(screenshotpath))
+//
+//            } else {
+//
+//            }
+//        } catch (e: Exception) {
+//        }
+//
+//    }
 
     /**
      * Function to wait until the screen is fully loaded
@@ -189,12 +191,12 @@ open class CommonFunctionKotlin {
     }
 
 
-    open fun waitForScreenToLoads(driver: AppiumDriver<MobileElement>, element: MobileElement?, seconds: Int) {
-
-        val wait = WebDriverWait(driver, seconds.toLong())
-        wait.until<WebElement>(ExpectedConditions.visibilityOf(element))
-
-    }
+//    open fun waitForScreenToLoads(driver: AppiumDriver<MobileElement>, element: MobileElement?, seconds: Int) {
+//
+//        val wait = WebDriverWait(driver, seconds.toLong())
+//        wait.until<WebElement>(ExpectedConditions.visibilityOf(element))
+//
+//    }
 
     /**
      * @param, drivertype, screenshot path, screenshot name
@@ -266,7 +268,7 @@ open class CommonFunctionKotlin {
                 //element.click()
                 break
             } catch (e: Exception) {
-                verticalSwipe(appiumDriver)
+                verticalSwipe(appiumDriver,"Down")
 
 
             }
@@ -281,7 +283,7 @@ open class CommonFunctionKotlin {
      * @param, driverType
      */
 
-    open fun verticalSwipe(driver: AppiumDriver<MobileElement>) {
+    open fun verticalSwipe(driver: AppiumDriver<MobileElement>,swipingdirection:String) {
         val dimension = driver.manage().window().size
         val height = dimension.getHeight()
         val width = dimension.getWidth()
@@ -293,10 +295,16 @@ open class CommonFunctionKotlin {
 //        action.press(PointOption.point(startX, startY))
 //                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
 //                .moveTo(PointOption.point(startX, endY)).release().perform()
-
-        PlatformTouchAction(driver).press(PointOption.point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
-                .moveTo(PointOption.point(startX, endY)).release().perform()
+        if(swipingdirection.equals("Down")) {
+            PlatformTouchAction(driver).press(PointOption.point(startX, startY))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                    .moveTo(PointOption.point(startX, endY)).release().perform()
+        }else if(swipingdirection.equals("Up"))
+        {
+            PlatformTouchAction(driver).press(PointOption.point(startX, endY))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                    .moveTo(PointOption.point(startX, startY)).release().perform()
+        }
     }
 
 
@@ -313,7 +321,7 @@ open class CommonFunctionKotlin {
 
     /**
      * Function to seek the video, you need pass the percentage of seeking
-     * @param driver
+     * @param appiumdriver
      * @param element
      * @param d
      * @throws InterruptedException
@@ -474,7 +482,7 @@ open class CommonFunctionKotlin {
     fun scrolltoEndofStories(appiumDriver: AppiumDriver<MobileElement>, element: MobileElement,
                              elements: Array<String>, element2: MobileElement
     ) {
-        val flag = false
+       // val flag = false
         for (i in 0..20) {
             try {
                 waitForScreenToLoad(appiumDriver, element, 5)
@@ -610,12 +618,12 @@ open class CommonFunctionKotlin {
         val expected = File("./Screenshots/Before")
         val actual = File("./Screenshots/After")
 
-        var expectedresults = ArrayList<String>()
-        expectedresults = getAllImages(expected, false)
+     //   var expectedresults = //ArrayList<String>()
+        var expectedresults = getAllImages(expected, false)
         val expectedimages = expectedresults.toTypedArray()
 
-        var actualresults: ArrayList<String> = ArrayList()
-        actualresults = getAllImages(actual, false)
+   //     var actualresults: ArrayList<String> = ArrayList()
+        var actualresults = getAllImages(actual, false)
         val actualimages = actualresults.toArray(arrayOfNulls<String>(actualresults.size))
         var i = 0
         while (i < expectedimages.size && i < actualimages.size) {
@@ -692,8 +700,8 @@ open class CommonFunctionKotlin {
                 var data1: IntArray? = null
 
                 if (grab1.grabPixels()) {
-                    val width = grab1.getWidth()
-                    val height = grab1.getHeight()
+                //    val width = grab1.getWidth()
+                 //   val height = grab1.getHeight()
                     //data1 = IntArray(width * height)
                     data1 = grab1.getPixels() as IntArray?
                 }
@@ -701,8 +709,8 @@ open class CommonFunctionKotlin {
                 var data2: IntArray? = null
 
                 if (grab2.grabPixels()) {
-                    val width = grab2.getWidth()
-                    val height = grab2.getHeight()
+                //    val width = grab2.getWidth()
+                  //  val height = grab2.getHeight()
                     //data2 = IntArray(width * height)
                     data2 = grab2.getPixels() as IntArray?
                 }
@@ -748,5 +756,79 @@ open class CommonFunctionKotlin {
 
         }
 
+
+    /**
+     * Function to seek forward on the video/audio playing
+     * @param, driverType, Element type
+     * double the seeking position ex(.30) means 30% seek
+     */
+
+    @Throws(InterruptedException::class)
+    fun videoplaybackseeking(driver: AppiumDriver<MobileElement>, element: MobileElement, d: Double, seekingtype: String) {
+        val startX = element.location.getX()
+        println("Startx :$startX")
+
+        val endX = element.size.getWidth()
+        println("Endx  :$endX")
+
+        val yAxis = element.location.getY()
+        println("Yaxis  :$yAxis")
+
+        val moveToXDirectionAt = (endX * d).toInt()
+        println("Moving seek bar at $moveToXDirectionAt In X direction.")
+        Thread.sleep(3000)
+
+        if (seekingtype.equals("forward", ignoreCase = true))
+        {
+            PlatformTouchAction(driver).press(PointOption.point(startX, yAxis))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                    .moveTo(PointOption.point(moveToXDirectionAt, yAxis)).release().perform()
+
+        } else if (seekingtype.equals("backward", ignoreCase = true))
+        {
+
+            PlatformTouchAction(driver).press(PointOption.point(endX, yAxis))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                    .moveTo(PointOption.point(moveToXDirectionAt, yAxis)).release().perform()
+        }
+
     }
+
+
+    /**
+     *function to drag and drop an element
+     * @param androidDriver
+     * @param elementfrom
+     * @param elementto
+     */
+
+    fun elementdragdrop(androiddriver: AndroidDriver<MobileElement>, elementfrom:MobileElement, elementto:MobileElement)
+    {
+        PlatformTouchAction(androiddriver).longPress(ElementOption.element(elementfrom)).
+                moveTo(ElementOption.element(elementto)).release().perform()
+    }
+
+//    public void elementdragdrop(AndroidDriver<MobileElement> androidDriver, MobileElement elementfrom, MobileElement elementto) {
+//        TouchAction action = new TouchAction((MobileDriver) androidDriver);
+//        action.longPress(ElementOption.element(elementfrom)).
+//                moveTo(ElementOption.element(elementto)).release().perform();
+
+
+    /**
+     * function to read the text from a recyclerview
+     * @param androidDriver
+     */
+    fun readRecyclerView(androidDriver: AndroidDriver<MobileElement>, text: String) {
+
+        val elements = androidDriver.findElementByClassName("android.support.v7.widget.RecyclerView").findElements(By.id("bbc.mobile.news.uk.internal:id/text"))
+        for (element in elements) {
+            //System.out.println("Topics After  Re-Ordering :- "+element.getText());
+            test?.log(Status.INFO, text + element.getText())
+        }
+    }
+
+    }
+
+
+
 

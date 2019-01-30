@@ -112,6 +112,19 @@ public class VidoePageObject {
             "bbc.mobile.news.uk.internal:id/videoSummary"
     };
 
+  //  @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='0']")
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.widget.RelativeLayout[@index='0']")
+    public MobileElement popularvideo;
+
+
+    public String popularvideoelements [] = {
+            "bbc.mobile.news.uk.internal:id/smp_pause_button",
+            "bbc.mobile.news.uk.internal:id/videoTitleHeadline",
+            "bbc.mobile.news.uk.internal:id/videoTitleTimestamp",
+            "bbc.mobile.news.uk.internal:id/videoTitleTopic",
+            "bbc.mobile.news.uk.internal:id/videoSummary"
+    };
+
 
 
 }

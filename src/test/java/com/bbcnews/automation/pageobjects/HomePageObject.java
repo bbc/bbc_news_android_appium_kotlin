@@ -50,14 +50,14 @@ public class HomePageObject {
     @AndroidFindBy(accessibility="Show navigation menu drawer")
     public MobileElement menubutton;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Politics']")
-    public MobileElement top_stories_Politics;
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Health']")
+    public MobileElement healthtopic;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='UK Politics']")
     public MobileElement UKPolitics_topheading;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Business']")
-    public MobileElement Business_topics;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Reality Check']")
+    public MobileElement realitychecktopics;
 
     @AndroidFindBy(accessibility = "Button:Videos of the day")
     public MobileElement videooftheday_button;

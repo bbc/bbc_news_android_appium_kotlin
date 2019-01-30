@@ -63,6 +63,19 @@ public class MyNewsPageObject {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='European Union']")
     public MobileElement Europeantopic;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mortgages']")
+    //@AndroidFindBy(accessibility = "Button: Add Mortgages to My News")
+    public MobileElement mortgagestopic;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='YouTube']")
+    //@AndroidFindBy(accessibility = "Button: Add YouTube to My News")
+    public MobileElement youtubetopic;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Education']")
+    //@AndroidFindBy(accessibility = "Button: Add Education to My News")
+    public MobileElement educationtopic;
+
+
     @AndroidFindBy(accessibility = "Manage your topics")
     public MobileElement mynews_managetopics;
 
@@ -83,6 +96,23 @@ public class MyNewsPageObject {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='London']")
     public MobileElement localnews_displayed;
+
+    public String articlepageelements[] =
+            {       "bbc.mobile.news.uk.internal:id/image_item_badge",
+                    "bbc.mobile.news.uk.internal:id/headline_info",
+                    "bbc.mobile.news.uk.internal:id/headline_title",
+                    "bbc.mobile.news.uk.internal:id/image_item",
+                    "bbc.mobile.news.uk.internal:id/headline_link",
+            };
+
+    public String articlepageview[] =
+            {       "bbc.mobile.news.uk.internal:id/item_layout_name",
+                    "bbc.mobile.news.uk.internal:id/item_layout_last_updated",
+                    "bbc.mobile.news.uk.internal:id/item_layout_home_section"
+            };
+
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']")
+    public MobileElement mynewsrecyclerview;
 
 
 
