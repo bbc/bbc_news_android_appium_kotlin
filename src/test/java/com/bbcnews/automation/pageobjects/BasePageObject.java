@@ -361,7 +361,18 @@ public class BasePageObject {
     public WebElement getPrivacypolicytext;
 
 
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='Internal Settings']")
+    public MobileElement internalsettings;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='CPS Content']")
+    public MobileElement cpscontent;
+
+    @AndroidFindBy(xpath="//android.widget.CheckedTextView[@text='Trevor TEST (Direct)' and @index='4']")
+    public MobileElement trevortest;
+
+    //@AndroidFindBy(xpath = "//android.widget.Button[@text='RELOAD' and @index='1']")
+    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/snackbar_action")
+    public MobileElement reloadButton;
 
 
 

@@ -10,10 +10,6 @@ import org.openqa.selenium.ScreenOrientation
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.support.PageFactory
 import org.testng.ITestResult
-import org.testng.annotations.AfterMethod
-import org.testng.annotations.AfterTest
-import org.testng.annotations.BeforeTest
-import org.testng.annotations.Test
 import java.io.File
 import java.io.IOException
 import java.net.URL
@@ -27,6 +23,7 @@ import org.testng.Assert.assertEquals
 import org.testng.Assert
 import java.lang.System.*
 import io.appium.java_client.android.StartsActivity
+import org.testng.annotations.*
 import java.time.Duration
 
 
@@ -785,9 +782,6 @@ class BBCNewsRegressionTestKotlin
                 i++
             }
 
-//            for (i in 0 until popularPageObject.mostreadpopularlinks.size) {
-//                commonFunctionKotlin.isElementPresent(androidDriver, By.id(popularPageObject.mostreadpopularlinks[i]))
-//            }
         } catch (e: NullPointerException) {
         }
 

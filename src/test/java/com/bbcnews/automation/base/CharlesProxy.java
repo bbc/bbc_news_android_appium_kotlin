@@ -50,7 +50,7 @@ public class CharlesProxy {
         }
     }
 
-    public void charlesSessionStart() {
+    public void startcharlesSession() {
         try {
             Process pr2 = rt.exec("curl -v -x http://localhost:8888 http://control.charles/recording/start");
             Thread.sleep(5000);
