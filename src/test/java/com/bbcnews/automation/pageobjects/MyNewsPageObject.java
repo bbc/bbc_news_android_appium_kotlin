@@ -94,7 +94,7 @@ public class MyNewsPageObject {
     @AndroidFindBy(accessibility = "Remove topic")
     public MobileElement removetopics;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='London']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Manchester']")
     public MobileElement localnews_displayed;
 
     public String articlepageelements[] =
