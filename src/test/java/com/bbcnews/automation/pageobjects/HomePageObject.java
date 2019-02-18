@@ -5,7 +5,8 @@ import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class HomePageObject {
+public class HomePageObject
+{
 
     public HomePageObject()
     {
@@ -50,14 +51,23 @@ public class HomePageObject {
     @AndroidFindBy(accessibility="Show navigation menu drawer")
     public MobileElement menubutton;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Health']")
-    public MobileElement healthtopic;
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Technology']")
+    public MobileElement technologytopic;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Education']")
+    public MobileElement educationstopics;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Family & Education']")
+    public  MobileElement family_educationTopic;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Politics']")
+    public MobileElement top_stories_Politics;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='UK Politics']")
     public MobileElement UKPolitics_topheading;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Reality Check']")
-    public MobileElement realitychecktopics;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Business']")
+    public MobileElement Business_topics;
 
     @AndroidFindBy(accessibility = "Button:Videos of the day")
     public MobileElement videooftheday_button;

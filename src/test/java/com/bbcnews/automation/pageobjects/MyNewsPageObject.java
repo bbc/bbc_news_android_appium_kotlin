@@ -10,8 +10,6 @@ public class MyNewsPageObject {
 
     }
 
-
-
     @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/title")
     public MobileElement mynewstitle;
 
@@ -52,15 +50,18 @@ public class MyNewsPageObject {
     public MobileElement mytopic_emptyview;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wales']")
+    // @AndroidFindBy(accessibility = "Button: Add Wales to My News")
     public MobileElement Walestopic;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Asia']")
+    //@AndroidFindBy(accessibility = "Button: Add Asia to My News")
     public MobileElement Asiatopic;
 
     @AndroidFindBy(accessibility = "Back")
     public MobileElement backbutton;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='European Union']")
+    //@AndroidFindBy(accessibility = "Button: Add European Union to My News")
     public MobileElement Europeantopic;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mortgages']")
@@ -74,7 +75,6 @@ public class MyNewsPageObject {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Education']")
     //@AndroidFindBy(accessibility = "Button: Add Education to My News")
     public MobileElement educationtopic;
-
 
     @AndroidFindBy(accessibility = "Manage your topics")
     public MobileElement mynews_managetopics;
@@ -97,8 +97,14 @@ public class MyNewsPageObject {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Manchester']")
     public MobileElement localnews_displayed;
 
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']")
+    public MobileElement mynewsrecyclerview;
+
+    @AndroidFindBy(accessibility = "Audio and Video")
+    public MobileElement asiavideoaudiosection;
+
     public String articlepageelements[] =
-            {       "bbc.mobile.news.uk.internal:id/image_item_badge",
+            {       //"bbc.mobile.news.uk.internal:id/image_item_badge",
                     "bbc.mobile.news.uk.internal:id/headline_info",
                     "bbc.mobile.news.uk.internal:id/headline_title",
                     "bbc.mobile.news.uk.internal:id/image_item",
@@ -111,8 +117,53 @@ public class MyNewsPageObject {
                     "bbc.mobile.news.uk.internal:id/item_layout_home_section"
             };
 
-    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']")
-    public MobileElement mynewsrecyclerview;
+
+    @AndroidFindBy(accessibility = "Manage your topics")
+    public MobileElement manageyourtopics;
+
+    @AndroidFindBy(xpath="//bbc.mobile.news.uk.internal:id/recyclerview[@index='1']/android.widget.RelativeLayout[@index='4']/android.widget.ImageView[@index='0']")
+    public MobileElement removetopiccymru;
+
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='2']")//android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']")
+    public MobileElement asiatopicarticle;
+
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")
+    public MobileElement item_layout_name;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")
+    public MobileElement item_layout_last_updated;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='2']")
+    public MobileElement item_layout_home_section;
+
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']")
+    public MobileElement asiatopicvideoarticle;
+
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")
+    public MobileElement videoitem_layout_primary_time;
+
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='2']")
+    public MobileElement videoitem_layout_name;
+
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='3']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")
+    public MobileElement videoitem_layout_last_updated;
+
+    @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='3']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='2']")
+    public MobileElement videoitem_layout_home_section;
+
+    @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/snackbar_text")
+    public  MobileElement snackbar;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='OK, got it']")
+    public MobileElement okgotit;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@tex'More']")
+    public MobileElement morebutton;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/item_layout_header_title') and @text='Wales']")
+    public MobileElement topictitle;
 
 
 

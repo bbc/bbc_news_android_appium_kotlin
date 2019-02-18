@@ -12,8 +12,8 @@ import com.aventstack.extentreports.reporter.configuration.Theme
 import com.bbcnews.automation.testutils.PlatformTouchAction
 import io.appium.java_client.AppiumDriver
 import io.appium.java_client.MobileElement
-import io.appium.java_client.TouchAction
 import io.appium.java_client.android.AndroidDriver
+import io.appium.java_client.android.connection.ConnectionStateBuilder
 import io.appium.java_client.android.nativekey.AndroidKey
 import io.appium.java_client.android.nativekey.KeyEvent
 import io.appium.java_client.touch.WaitOptions
@@ -436,7 +436,7 @@ open class CommonFunctionKotlin {
 
 
     @Throws(Exception::class)
-    fun createrReportHive(reportname: String, deviceOS: String, deviceName: String, deviceId: String) {
+    fun createrReportHive(reportname: String, deviceName: String, deviceId: String) {
 
         val curDate = Date()
         println(curDate.toString())
@@ -458,7 +458,7 @@ open class CommonFunctionKotlin {
         extent.attachReporter(htmlReporter)
         htmlReporter.setAppendExisting(false)
         extent.setSystemInfo("Device ID", deviceId)
-        extent.setSystemInfo("Firmware version", deviceOS)
+       // extent.setSystemInfo("Firmware version", deviceOS)
         extent.setSystemInfo("Device Name ", deviceName)
         extent.setSystemInfo("Run Started on", curDate.toString())
 
@@ -833,7 +833,7 @@ open class CommonFunctionKotlin {
     fun comapreStatsData(csv: String, statsdata: Array<String>)
     {
         var br: BufferedReader? = null
-        var line = ""
+        var line= ""
         val cvsSplitBy = ","
         val cvssplit = "&"
         var country: Array<String>? = null
@@ -884,7 +884,116 @@ open class CommonFunctionKotlin {
     }
 
 
+    /**
+     * function to check whether WiFi Connection enabled or not.
+     * If not, enables the WiFi Connection
+     * @param androidDriver
+     */
+
+    fun checkConnection(androidDriver: AndroidDriver<MobileElement>) {
+        try {
+            val state = androidDriver.setConnection(ConnectionStateBuilder()
+                    .withWiFiEnabled()
+                    .build())
+            System.out.println("The WiFi Status is " + state.isWiFiEnabled())
+            if (!state.isWiFiEnabled()) {
+                androidDriver.setConnection(state)
+            }
+        } catch (e: NullPointerException) {
+
+        }
+
     }
+
+    /**
+     *
+     */
+    @Throws(Exception::class)
+    fun textpresent(appiumDriver: AppiumDriver<MobileElement>, text: String, text1: String)
+    {
+        val textpresent = appiumDriver.findElement(By.xpath("//android.widget.TextView[@text='$text $text1 My News']"))
+        test?.log(Status.PASS, "Element Present" + textpresent.text)
+
+    }
+
+    /**
+     * Function to seek the video, you need pass the percentage of seeking
+     * @param driver
+     * @param element
+     * @param d
+     * @throws InterruptedException
+     */
+
+
+    @Throws(InterruptedException::class)
+    fun videoplaybackseeking(driver: AppiumDriver<MobileElement>, element: MobileElement, d: Double) {
+        val startX = element.getLocation().getX()
+        System.out.println("Startx :$startX")
+
+        val endX = element.getSize().getWidth()
+        System.out.println("Endx  :$endX")
+
+        val yAxis = element.getLocation().getY()
+        System.out.println("Yaxis  :$yAxis")
+
+        val moveToXDirectionAt = (endX * d).toInt()
+        System.out.println("Moving seek bar at $moveToXDirectionAt In X direction.")
+        Thread.sleep(3000)
+
+        PlatformTouchAction(driver).press(PointOption.point(startX, yAxis))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                .moveTo(PointOption.point(moveToXDirectionAt, yAxis)).release().perform()
+    }
+
+
+    /**
+     * Function to seek forward on the video/audio playing
+     * @param, driverType, Element type
+     * double the seeking position ex(.30) means 30% seek
+     */
+
+    @Throws(InterruptedException::class)
+    fun seeking(driver: AppiumDriver<MobileElement>, element: MobileElement, d: Double, seekingtype: String) {
+        val startX = element.getLocation().getX()
+        val endX = element.getSize().getWidth()
+        val yAxis = element.getLocation().getY()
+        val moveToXDirectionAt = (endX * d).toInt()
+
+        if (seekingtype.equals("forward"))
+        {
+
+            PlatformTouchAction(driver).press(PointOption.point(startX, yAxis))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                    .moveTo(PointOption.point(moveToXDirectionAt, yAxis)).release().perform()
+
+        } else if (seekingtype.equals("backward"))
+        {
+
+            PlatformTouchAction(driver).press(PointOption.point(endX, yAxis))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                    .moveTo(PointOption.point(moveToXDirectionAt, yAxis)).release().perform()
+        }
+
+    }
+
+
+
+    /**
+     * Function to check, whether given element is selected or not
+     * @param, drivertype, element name
+     */
+    fun elementIsSelected( element: MobileElement): Boolean {
+        if (element.isSelected()) {
+            test?.log(Status.INFO, "Eelement selected")
+            return true
+
+        } else {
+            test?.log(Status.INFO, "Eelement not selected")
+            return false
+
+        }
+    }
+}
 
 
 

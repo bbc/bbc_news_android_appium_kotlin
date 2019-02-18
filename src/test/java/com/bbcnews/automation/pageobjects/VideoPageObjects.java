@@ -4,12 +4,14 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 
-public class VidoePageObject {
+public class VideoPageObjects {
 
-    public VidoePageObject()
+
+    public VideoPageObjects()
     {
 
     }
+
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Video']")
     public MobileElement video;
@@ -18,6 +20,7 @@ public class VidoePageObject {
     public MobileElement bbcnewsChannel;
 
     //@AndroidFindBy(accessibility = "The BBC News Channel")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/content_card_title")
     @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/content_card_title")
     public MobileElement livebbchannel;
 
@@ -34,7 +37,7 @@ public class VidoePageObject {
     public MobileElement smp_volume_button;
 
     @AndroidFindBy(accessibility = "live content")
-    public By smp_live_icon;
+    public MobileElement smp_live_icon;
 
     @AndroidFindBy(accessibility = "live content")
     public MobileElement smpliveicon;
@@ -106,25 +109,30 @@ public class VidoePageObject {
 
     public String videowallelements[] = {
             "bbc.mobile.news.uk.internal:id/smp_placeholder_play_button",
-            "bbc.mobile.news.uk.internal:id/videoTitleHeadline",
+            // "bbc.mobile.news.uk.internal:id/videoTitleHeadline",
             "bbc.mobile.news.uk.internal:id/videoTitleTimestamp",
             "bbc.mobile.news.uk.internal:id/videoTitleTopic",
             "bbc.mobile.news.uk.internal:id/videoSummary"
     };
 
-  //  @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='0']")
-    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.widget.RelativeLayout[@index='0']")
-    public MobileElement popularvideo;
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Top Stories']")
+    public MobileElement topstories;
 
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']")///android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='0']")
+    //@AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']")
+    //android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='0']")
+    public MobileElement topstoriesvideo;
 
-    public String popularvideoelements [] = {
-            "bbc.mobile.news.uk.internal:id/smp_pause_button",
-            "bbc.mobile.news.uk.internal:id/videoTitleHeadline",
-            "bbc.mobile.news.uk.internal:id/videoTitleTimestamp",
-            "bbc.mobile.news.uk.internal:id/videoTitleTopic",
-            "bbc.mobile.news.uk.internal:id/videoSummary"
-    };
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")
+    public MobileElement topstoriesvideoplaytime;
 
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='2']")
+    public MobileElement topstoriesvideolayoutname;
 
+    @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/smp_elapsed")
+    public MobileElement smpelapsedtime;
 
+    public  String elapsedtime_forward;
+
+    public String elapsedtime_backward;
 }

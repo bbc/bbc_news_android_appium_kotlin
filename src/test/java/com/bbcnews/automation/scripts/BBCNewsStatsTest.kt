@@ -1,7 +1,7 @@
 package com.bbcnews.automation.scripts
 
 import com.aventstack.extentreports.ExtentTest
-import com.bbcnews.automation.base.CharlesProxy
+import com.bbcnews.automation.testutils.CharlesProxy
 import com.bbcnews.automation.commonfunctions.CommonFunctionKotlin
 import com.bbcnews.automation.pageobjects.*
 import com.bbcnews.automation.testutils.Testutility
@@ -39,17 +39,19 @@ class BBCNewsStatsTest {
 
     private var commonFunctionKotlin = CommonFunctionKotlin()
     private var testutility = Testutility()
+
     private lateinit var homePageObject: HomePageObject
     private lateinit var androidDriver: AndroidDriver<MobileElement>
     private lateinit var myNewsPageObject: MyNewsPageObject
     //private lateinit var basePageObject: BasePageObject
-    private lateinit var vidoePageObject: VidoePageObject
-    private lateinit var popularPageObject: PopularPageObject
+    private lateinit var vidoePageObject: VideoPageObjects
+    private lateinit var popularPageObject: PopularPageObjects
     private lateinit var basePageObjectModel: BasePageObject
     private lateinit var commonpageobjects: CommonPageObjects
 
     internal var charlesProxy = CharlesProxy()
     var statsTestData = StatsTestData()
+
 
     @BeforeTest
     @Throws(Exception::class)
@@ -122,16 +124,16 @@ class BBCNewsStatsTest {
         basePageObjectModel = BasePageObject()
         PageFactory.initElements(AppiumFieldDecorator(androidDriver), basePageObjectModel)
 
-        vidoePageObject = VidoePageObject()
+        vidoePageObject = VideoPageObjects()
         PageFactory.initElements(AppiumFieldDecorator(androidDriver), vidoePageObject)
 
-        popularPageObject = PopularPageObject()
+        popularPageObject = PopularPageObjects()
         PageFactory.initElements(AppiumFieldDecorator(androidDriver), popularPageObject)
 
         testutility.emptyFolder(screenshotpath)
 
 
-        commonFunctionKotlin.createrReportHive("Regression", deviceosName.toString(), deviceName.toString(), deviceid.toString())
+        commonFunctionKotlin.createrReportHive("Regression", deviceName.toString(), deviceid.toString())
 
 
         androidDriver.context("NATIVE_APP")
@@ -331,8 +333,8 @@ class BBCNewsStatsTest {
     @AfterTest
     fun tearDown() {
         commonFunctionKotlin.publishReport()
-        androidDriver!!.closeApp()
-        androidDriver!!.quit()
+        androidDriver.closeApp()
+        androidDriver.quit()
 
     }
 

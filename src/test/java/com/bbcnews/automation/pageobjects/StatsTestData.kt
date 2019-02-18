@@ -18,5 +18,5 @@ class StatsTestData {
 
     var settingstats = arrayOf("p=news%2Esettings%2Epage", "x7=%5Bsettings%5D")
 
-    var csvFile = "/Users/ramakh02/Desktop/AppiumBBCNewsAndroid/session.csv"
+    var csvFile = "./CharlesFolder/BBCNews.csv"
 }
