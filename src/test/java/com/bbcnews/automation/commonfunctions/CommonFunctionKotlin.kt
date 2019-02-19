@@ -829,59 +829,58 @@ open class CommonFunctionKotlin {
 
 
 
-    @Throws(InterruptedException::class, IOException::class)
-    fun comapreStatsData(csv: String, statsdata: Array<String>)
-    {
-        var br: BufferedReader? = null
-        var line= ""
-        val cvsSplitBy = ","
-        val cvssplit = "&"
-        var country: Array<String>? = null
-        var staturl: Array<String>? = null
-
-        try {
-
-            br = BufferedReader(FileReader(csv))
-            line = br.readLine()
-            while (line  != null)
-            {
-                // use comma as separator
-                country = line.split(cvsSplitBy.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                staturl = country[0].split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                println("Stat's URL " + country[0])
-                for (i in staturl.indices) {
-
-                    //System.out.println("The New Generated Stats " + staturl[i]);
-                    for (j in statsdata.indices) {
-                        if (staturl[i].equals(statsdata[j], ignoreCase = true)) {
-
-                            assertEquals(staturl[i], statsdata[j], "Stat's Matched")
-                            val matchedstats = staturl[i]
-                            println("The New Generated Stats $matchedstats")//list.add(staturl[i].toString()));
-                        }
-                    }
-
-                }
-
-            }
-
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-
-        } finally {
-            if (br != null) {
-                try {
-                    br.close()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-
-        }
-
-    }
+//    @Throws(InterruptedException::class, IOException::class)
+//    fun comapreStatsData(csv: String, statsdata: Array<String>)
+//    {
+//        var br: BufferedReader? = null
+//        var line= ""
+//        val cvsSplitBy = ","
+//        var country: Array<String>? = null
+//        var staturl: Array<String>? = null
+//
+//        try {
+//
+//            br = BufferedReader(FileReader(csv))
+//            line = br.readLine()
+//            while (line  != null)
+//            {
+//                // use comma as separator
+//                country = line.split(cvsSplitBy.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+//                staturl = country[0].split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+//                println("Stat's URL " + country[0])
+//                for (i in staturl.indices) {
+//
+//                    //System.out.println("The New Generated Stats " + staturl[i]);
+//                    for (j in statsdata.indices) {
+//                        if (staturl[i].equals(statsdata[j], ignoreCase = true)) {
+//
+//                            assertEquals(staturl[i], statsdata[j], "Stat's Matched")
+//                            val matchedstats = staturl[i]
+//                            println("The New Generated Stats $matchedstats")//list.add(staturl[i].toString()));
+//                        }
+//                    }
+//
+//                }
+//
+//            }
+//
+//        } catch (e: FileNotFoundException) {
+//            e.printStackTrace()
+//
+//        } finally {
+//            if (br != null) {
+//                try {
+//                    br.close()
+//                } catch (e: IOException) {
+//                    e.printStackTrace()
+//                }
+//
+//            }
+//
+//
+//        }
+//
+//    }
 
 
     /**
@@ -993,6 +992,11 @@ open class CommonFunctionKotlin {
 
         }
     }
+
+
+
+
+
 }
 
 

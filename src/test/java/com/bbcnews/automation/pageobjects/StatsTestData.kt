@@ -1,5 +1,11 @@
 package com.bbcnews.automation.pageobjects
 
+import java.io.BufferedReader
+import java.io.FileNotFoundException
+import java.io.FileReader
+import java.io.IOException
+import java.util.ArrayList
+
 class StatsTestData {
 
     var BBCnewsBasicstats = arrayOf("ptag=Android", "apid=bbc.mobile.news.uk.internal", "type=screen", "action=view", "vtag=2.10.2", "apvr=%5B5%2E5%2E0%2E91%5D", "x2=%5Bmobile%2Dapp%5D", "x3=%5Bnews%5D", "x8=%5Becho%5Fandroid%2D17%2E1%2E0%5D", "manufacturer=samsung", "model=SM-G925F")
@@ -19,4 +25,60 @@ class StatsTestData {
     var settingstats = arrayOf("p=news%2Esettings%2Epage", "x7=%5Bsettings%5D")
 
     var csvFile = "./CharlesFolder/BBCNews.csv"
+
+
+    @Throws(InterruptedException::class, IOException::class)
+    fun comapre_StatsData(csvfile: String, statsdata: Array<String>) {
+
+        // String csvFile = "./CharlesFolder/BBCNews.csv";
+        var br: BufferedReader? = null
+        var line: String
+        val cvsSplitBy = ","
+        var country: Array<String>? = null
+        var staturl: Array<String>?
+        val aListColors = ArrayList<String>()
+        try {
+
+            br = BufferedReader(FileReader(csvfile))
+            line = br.readLine()
+            while (line != null) {
+                // use comma as separator
+                country = line.split(cvsSplitBy.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                staturl = country[0].split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                for (i in staturl.indices) {
+                    if (!aListColors.contains(staturl[i])) {
+                        aListColors.add(staturl[i])
+                    }
+                }
+            }
+
+            staturl = aListColors.toTypedArray()
+            for (i in staturl.indices) {
+                for (j in statsdata.indices) {
+                    if (staturl[i].equals(statsdata[j], ignoreCase = true)) {
+                        val matchedstats = staturl[i]
+                        println("The New Generated Stats " + matchedstats.replace("[-+^:,%2E5BD3AF]".toRegex(), ""))
+                    }
+                }
+            }
+
+
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+
+        } finally {
+            if (br != null) {
+                try {
+                    br.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+        }
+
+
+    }
 }
