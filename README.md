@@ -61,7 +61,7 @@ To run scripts , run the BBCNewsSmokeTest.xml file .
 
 First you'll need to start appium. By typing appium -p portnumber (to run on a specify port. By default appium runs on port 4723) 
 
-./gradlew test -DAppiumPort="Appium portNumber " -DDeviceID="DeviceID" -DDeviceOS="OS" -DDeviceName="DeviceName" -DAppPath="AppPath" -PSmokeTest
+./gradlew test -DAppiumPort="Appium portNumber " -DDeviceID="DeviceID" -DDeviceName="DeviceName" -DAppPath="AppPath" -PSmokeTest
 
 **Note:**  
 Change the device ID, OS version, device Name  to the devices connected in your system , pass the Appiumport, pass the AppPath location in you system i before you run it .
