@@ -25,7 +25,7 @@ class CharlesProxy {
         //val dir = File("./charles/BBCNews.config")
         try {
             // Process pr = rt.exec("charles");
-            rt.exec("charles -config ./charles/BBCNews.config &")
+            rt.exec("charles -config ./charles/charlesproxy.config &")
             System.out.println("Starting Charles ")
         } catch (e: IOException) {
 
