@@ -994,6 +994,20 @@ open class CommonFunctionKotlin {
     }
 
 
+    /**
+     *
+     * @param appiumDriver
+     * @param elementID
+     */
+    fun getElements(appiumDriver: AppiumDriver<MobileElement>, elementID: String) {
+        var Elements: List<MobileElement> = ArrayList<MobileElement>()
+        Elements = appiumDriver.findElements(By.id(elementID))
+        System.out.println("The elements counts are" + Elements.size)
+        for (i in 0 until Elements.size) {
+            System.out.println("The Text are " + Elements[i].getText())
+        }
+    }
+
 
 
 

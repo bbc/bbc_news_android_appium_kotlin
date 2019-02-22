@@ -14,6 +14,7 @@ import io.qameta.allure.SeverityLevel
 import io.qameta.allure.Story
 import org.openqa.selenium.By
 import org.openqa.selenium.ScreenOrientation
+import org.openqa.selenium.StaleElementReferenceException
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.support.PageFactory
 import org.testng.Assert
@@ -270,7 +271,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)//,file.getAbsolutePath());
             Assert.assertTrue(basePageObjectModel.popular.isSelected())
             commonFunctionKotlin.elementDisplayed(androidDriver, popularPageObject.mostread)
-            Assert.assertEquals("Most Read", popularPageObject.mostread.getText(), "Text Matched")
+            Assert.assertEquals("Most Read", popularPageObject.mostread.text, "Text Matched")
         } catch (e: AssertionError) {
             e.printStackTrace()
         }
@@ -288,7 +289,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("PopularPage", "Checking most watched displayed the Popular", "Smoke")
             commonFunctionKotlin.scrolltoElement(androidDriver, popularPageObject.popularmostwatched)
-            Assert.assertEquals("Most Watched", popularPageObject.popularmostwatched.getText(), "Text Matched")
+            Assert.assertEquals("Most Watched", popularPageObject.popularmostwatched.text, "Text Matched")
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -313,8 +314,8 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynews_summary)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynewstitle)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.addnews_button)
-            Assert.assertEquals(myNewsPageObject.mynewstitle_text, myNewsPageObject.mynewstitle.getText(), "Text matched")
-            Assert.assertEquals(myNewsPageObject.mynewssummary_text, myNewsPageObject.mynews_summary.getText(), "Text matched")
+            Assert.assertEquals(myNewsPageObject.mynewstitle_text, myNewsPageObject.mynewstitle.text, "Text matched")
+            Assert.assertEquals(myNewsPageObject.mynewssummary_text, myNewsPageObject.mynews_summary.text, "Text matched")
         } catch (e: AssertionError) {
             e.printStackTrace()
         }
@@ -341,7 +342,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Asiatopic, false)
             commonFunctionKotlin.textpresent(androidDriver, "Asia", "added to")
 
-        } catch (e: Exception) {
+        } catch (e: StaleElementReferenceException) {
             e.printStackTrace()
         }
 
@@ -460,7 +461,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.searchbutton, false)
             commonFunctionKotlin.enterText( basePageObjectModel.searchfield, basePageObjectModel.searchtext)
             commonFunctionKotlin.sleepmethod(1000)
-            Assert.assertEquals(basePageObjectModel.searchtext, basePageObjectModel.searchkeyword.getText(), "Text Matched")
+            Assert.assertEquals(basePageObjectModel.searchtext, basePageObjectModel.searchkeyword.text, "Text Matched")
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.searchkeyword, false)
             val title = commonFunctionKotlin.getText(basePageObjectModel.headlinetitle)
             Assert.assertEquals(basePageObjectModel.searchtext, title)
