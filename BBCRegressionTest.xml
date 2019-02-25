@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="BBCNewsSuite">
     <listeners>
-    <listener class-name="com.bbcnews.automation.testutils.Listeners.TestListeners" />
+    <listener class-name="com.bbcnews.automation.testutils.Listeners.RegressionTestListeners" />
     </listeners>
     <test name="BBCNewsRegressionTest" enabled="true">
         <classes>

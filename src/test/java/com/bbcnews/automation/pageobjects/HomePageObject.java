@@ -43,6 +43,7 @@ public class HomePageObject
     @AndroidFindAll(
             {
                     @AndroidBy(id = "bbc.mobile.news.uk.internal:id/action_search"),
+                    @AndroidBy(id = "bbc.mobile.news.uk:id/action_search"),
                     @AndroidBy(accessibility = "Search")
             }
     )
@@ -78,12 +79,50 @@ public class HomePageObject
     @AndroidFindBy(accessibility = "Button: Stories")
     public MobileElement stories_button;
 
-    @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/newstream_promo_counter")
+   // @AndroidFindBy(id = "bbc.mobile.news.uk.internal:id/newstream_promo_counter")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id = "bbc.mobile.news.uk.internal:id/newstream_promo_counter"),
+                    @AndroidBy(id = "bbc.mobile.news.uk:id/newstream_promo_counter")
+            }
+    )
     public MobileElement promocounter;
 
-    // @AndroidFindBy(xpath = "android.widget.TextView[@text='WATCH']")
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_watch_label")
+
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_watch_label")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_watch_label"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/newstream_promo_watch_label")
+            }
+    )
     public MobileElement watchvideo;
+
+
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk:id/newstream_promo_title"),
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_title")
+            }
+    )
+    public MobileElement vodeoofthedaytitle;
+
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_summary"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/newstream_promo_summary")
+            }
+    )
+    public MobileElement vodeoofthedaypromosummary;
+
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/newstream_promo_watch_label"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/newstream_promo_watch_label")
+            }
+    )
+    public MobileElement videooftheday_watchtext;
+
 
     @AndroidFindBy(accessibility = "Exit")
     public MobileElement closewindow;
@@ -100,10 +139,24 @@ public class HomePageObject
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Check back later']")
     public MobileElement checkback_later;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/newstream_progress")
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/newstream_progress")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/newstream_progress"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/newstream_progress")
+            }
+    )
     public MobileElement newstream_progress;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout[1]/bbc.mobile.news.uk.internal:id/main_view[0]/android.widget.ImageView[@index='0']")
+  //  @AndroidFindBy(xpath = "//android.widget.FrameLayout[1]/bbc.mobile.news.uk.internal:id/main_view[0]/android.widget.ImageView[@index='0']")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(xpath = "//android.widget.FrameLayout[1]/bbc.mobile.news.uk.internal:id/main_view[0]/android.widget.ImageView[@index='0']"),
+                    @AndroidBy(xpath = "//android.widget.FrameLayout[1]/bbc.mobile.news.uk:id/main_view[0]/android.widget.ImageView[@index='0']")
+            }
+    )
+
+
     public MobileElement topstories_atricle;
 
 

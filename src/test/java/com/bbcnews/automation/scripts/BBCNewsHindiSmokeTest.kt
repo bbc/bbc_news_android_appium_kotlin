@@ -93,8 +93,6 @@ class BBCNewsHindiSmokeTest {
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android")
             capabilities.setCapability("appiumversion", "1.8.1")
             capabilities.setCapability("app", AppPath) //"/Users/ramakh02/Desktop/tools/APK/BBCNews-5.5.0.35.apk");
-            //it's not mandatory to pass OS version of the device
-            // capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,Deviceos_Name);
             capabilities.setCapability("appPackage", "uk.co.bbc.hindi")
             capabilities.setCapability("appActivity", "bbc.mobile.news.v3.app.TopLevelActivity")
             capabilities.setCapability(MobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, true);

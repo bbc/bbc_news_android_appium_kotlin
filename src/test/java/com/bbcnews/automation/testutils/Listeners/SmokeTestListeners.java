@@ -1,5 +1,8 @@
 package com.bbcnews.automation.testutils.Listeners;
 
+
+
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestListeners implements ITestListener {
+public class SmokeTestListeners implements ITestListener {
 
     // A list to hold your test cases.
     List<Map<String,Object>> testCases = new ArrayList<Map<String, Object>>();
@@ -55,15 +58,15 @@ public class TestListeners implements ITestListener {
         if (result.getStatus() == ITestResult.FAILURE)
         {
             Throwable throwable = result.getThrowable();
-             originalMessage = throwable.getMessage();
+            originalMessage = throwable.getMessage();
         }
-       // System.out.println("I'M a  test method " + getTestMethodName(result) + " failure");
+        // System.out.println("I'M a  test method " + getTestMethodName(result) + " failure");
         System.out.println("The name of the testcase failed is :"+getTestMethodName(result));
         Map<String, Object> testCase = new HashMap<String, Object>();
         testCase.put("name", getTestMethodName(result));//getTestMethodName(result));
         testCase.put("suite", "BBCNewsSuite");
         testCase.put("result", "fail");
-       // testCase.put("reason",originalMessage);
+        // testCase.put("reason",originalMessage);
         testCases.add(testCase);
 
     }
@@ -73,7 +76,7 @@ public class TestListeners implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
 
-       // System.out.println("I'M a  test method " + getTestMethodName(result) + " skipped");
+        // System.out.println("I'M a  test method " + getTestMethodName(result) + " skipped");
         System.out.println("The name of the testcase Skipped is :"+getTestMethodName(result));
         Map<String, Object> testCase = new HashMap<String, Object>();
         testCase.put("name", getTestMethodName(result));//getTestMethodName(result));
@@ -111,7 +114,7 @@ public class TestListeners implements ITestListener {
         System.out.println("on finish of test " + context.getName());
         // Map<String, Object> to hold your test results data.
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("target", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjFlMzc2NDcxLWQ5M2YtNDJhMC04NzYwLTIwMmRkYmEwMzc4Ni0xNTQ0OTc1NzMyNjAxIiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiM2EwM2MzYTMtYzA5YS00NDVmLTkzNjEtZjcwZWI2NDYxODNmIiwidHlwZSI6InQifQ.yow-dKqWyb8f_n3U0azBmYZqPnN1uqwwDy1-ckI0SmM");
+        data.put("target", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImQ0NjcxN2I3LTY3NGUtNGViNS1hZGUxLWI0MGRiNDE4N2U3OC0xNTUxMTAzNzA2MzU4IiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiZWEzZDIyOGEtY2NkNC00ODQxLWEwM2ItYmRmMzQzYjI1NGJjIiwidHlwZSI6InQifQ.ow9NLtBVBDJCEwmEVN0_XQpax8IRRwYv2GXkk9d5wsY");
 
         Map<String, Object> results = new HashMap<String, Object>();
         results.put("cases", testCases);
@@ -125,8 +128,8 @@ public class TestListeners implements ITestListener {
         System.out.println("warnings: " + response.get("warnings"));
 
 
-       // System.out.println("errors: " + ((List<String>) response.get("errors")).size());
-       // System.out.println("warnings: " + ((List<String>) response.get("warnings")).size());
+        // System.out.println("errors: " + ((List<String>) response.get("errors")).size());
+        // System.out.println("warnings: " + ((List<String>) response.get("warnings")).size());
 
 
     }
@@ -142,4 +145,5 @@ public class TestListeners implements ITestListener {
 
 
 }
+
 

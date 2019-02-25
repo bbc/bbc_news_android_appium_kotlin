@@ -1,6 +1,8 @@
 package com.bbcnews.automation.pageobjects;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidBy;
+import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PopularPageObjects {
@@ -30,25 +32,67 @@ public class PopularPageObjects {
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/content_card_ordered_badge') and @text='1']")
     public MobileElement populararticle;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/image_item_caption")
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/image_item_caption")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/image_item_caption"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/image_item_caption")
+            }
+    )
     public MobileElement image_item_caption;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/image_item_badge")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/image_item_badge")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/image_item_badge"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/image_item_badge")
+            }
+    )
     public MobileElement image_item_badge;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_title")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_title")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/headline_title"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/headline_title")
+            }
+    )
     public MobileElement headline_title;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_author_name")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_author_name")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/headline_author_name"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/headline_author_name")
+            }
+    )
     public MobileElement headline_author_name;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_author_title")
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_author_title")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/headline_author_title"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/headline_author_title")
+            }
+    )
     public MobileElement headline_author_title;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_info")
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_info")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/headline_info"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/headline_info")
+            }
+    )
     public MobileElement headline_info;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_link")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/headline_link")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/videoTitleHeadline"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/videoTitleHeadline")
+            }
+    )
     public MobileElement headline_link;
 
     public String mostreadpopularlinks[] =
@@ -63,6 +107,17 @@ public class PopularPageObjects {
             };
 
 
+    public String mostreadpopularlinks_Release[] =
+            {
+                    "bbc.mobile.news.uk:id/headline_info",
+                    "bbc.mobile.news.uk:id/headline_title",
+                    "bbc.mobile.news.uk:id/headline_link",
+                    // "bbc.mobile.news.uk:id/image_item_caption",
+                    //  "bbc.mobile.news.uk:id/headline_author_name"
+                    "bbc.mobile.news.uk:id/image_item"
+            };
+
+
     //@AndroidFindBy(xpath = "//android.widget.FrameLayout[2]/android.view.ViewGroup[0]/android.widget.ImageView[@index='0']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='1' and @index='1']")
     public MobileElement mostRead_article;
@@ -73,16 +128,40 @@ public class PopularPageObjects {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='3']/android.widget.TextView[@text='1' and @index='1']")
     public MobileElement mostwatched_article;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoTitleHeadline")
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoTitleHeadline")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/videoTitleHeadline"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/videoTitleHeadline")
+            }
+    )
     public MobileElement videoTitleHeadline;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoTitleTimestamp")
+   // @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoTitleTimestamp")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/videoTitleTimestamp"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/videoTitleTimestamp")
+            }
+    )
     public MobileElement videoTitleTimestamp;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoTitleTopic")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoTitleTopic")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/videoTitleTopic"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/videoTitleTopic")
+            }
+    )
     public MobileElement videoTitleTopic;
 
-    @AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoSummary")
+    //@AndroidFindBy(id="bbc.mobile.news.uk.internal:id/videoSummary")
+    @AndroidFindAll(
+            {
+                    @AndroidBy(id="bbc.mobile.news.uk.internal:id/videoSummary"),
+                    @AndroidBy(id="bbc.mobile.news.uk:id/videoSummary")
+            }
+    )
     public MobileElement videoSummary;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Most Popular']")
@@ -99,49 +178,27 @@ public class PopularPageObjects {
             "bbc.mobile.news.uk.internal:id/videoSummary"
     };
 
+    public String popularvideoelements_Release [] = {
+            "bbc.mobile.news.uk:id/smp_pause_button",
+            "bbc.mobile.news.uk:id/videoTitleHeadline",
+            "bbc.mobile.news.uk:id/videoTitleTimestamp",
+            "bbc.mobile.news.uk:id/videoTitleTopic",
+            "bbc.mobile.news.uk:id/videoSummary"
+    };
+
 
 
     //@AndroidFindBy(xpath="//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index=0]/android.widget.TextView[@text='2' and index='1']")
     @AndroidFindBy(xpath="//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index=0]/android.widget.TextView[@text='2' and index='1']")
     public MobileElement mostwatchedvideoarticle;
 
-    // @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index=0]/android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/item_layout_position') and @index='1']")
-//    @AndroidFindBy(xpath="//android.widget.TextView[@text='1' and @index='1']")
-//    public MobileElement mostwacthedvideoarticleposition;
-//
-//    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index=0]/android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/item_layout_primary_time') and @index='2']")
-//    public MobileElement mostwacthedvideoarticletime;
-//
-//    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[contains(@resource-id,'bbc.mobile.news.uk.internal:id/item_layout_name') and @index='1']")
-//    public MobileElement mostwacthedvideoarticlelayoutname;
-//
-//    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index=0]/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")
-//    public MobileElement mostwacthedvideoarticle_last_updated;
-//
-//    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='3']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index=0]/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='2']")
-//    public MobileElement mostwacthedvideoarticle_home_section;
-
-    @AndroidFindBy(xpath="//*[@class='android.widget.TextView' and @bounds='[632,435][696,499]']")
-    public MobileElement mostwacthedvideoarticleposition;
-
-    @AndroidFindBy(xpath="//*[@class='android.widget.TextView' and @bounds='[632,673][814,737]']")
-    public MobileElement mostwacthedvideoarticleduration;
-
-    @AndroidFindBy(xpath="//*[@class='android.widget.TextView' and @bounds='[632,737][1168,880]']")
-    public MobileElement mostwacthedvideoarticletitle;
-
-    @AndroidFindBy(xpath="//*[@class='android.widget.TextView' and @bounds='[664,966][833,1009]']")
-    public MobileElement mostwacthedvideoarticleupdatedtime;
-
-    @AndroidFindBy(xpath="//*[@class='android.widget.TextView' and @bounds='[872,966][965,1009]']")
-    public MobileElement mostwacthedvideoarticlehomesection;
 
 
-    //@AndroidFindBy(xpath="//*[@class='android.widget.FrameLayout' and @bounds='[632,435][1168,1027]']")
-    //@AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='7']/android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.TextView[@text='3' and @index='1']")
-    //@AndroidFindBy(xpath="//*[@class='android.widget.TextView' and @text=['10']")
-    @AndroidFindBy(xpath="//*[@content-desc='Media length' or @text='3']")
-    //@AndroidFindBy(xpath="//*[@id='bbc.mobile.news.uk.internal:id/item_layout_primary_time' or @content-desc='Media length']")
+
+
+
+
+    @AndroidFindBy(xpath="//*[@content-desc='Media length' or @text='2']")
     public MobileElement mostwatchedartcilevideo;
 
 
