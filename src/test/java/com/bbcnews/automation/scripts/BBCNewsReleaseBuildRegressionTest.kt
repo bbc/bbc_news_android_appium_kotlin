@@ -354,8 +354,8 @@ class BBCNewsReleaseBuildRegressionTest
         try {
             commonFunctionKotlin.startTest("Adding Topics ", "Test to check added Topics to MyNews page", "MyNews")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.addtopics, false)
-//            Assert.assertEquals("Manchester", myNewsPageObject.localnews_displayed.getText())
-//            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed)
+            Assert.assertEquals("Manchester", myNewsPageObject.localnews_displayed.getText())
+            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed)
             commonFunctionKotlin.scrolltoElement(androidDriver, myNewsPageObject.Walestopic)
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Walestopic, false)
             commonFunctionKotlin.textpresent(androidDriver, "Wales", "added to")
