@@ -18,10 +18,17 @@ public class BBCNewsHindiPageObject {
 
     //@AndroidFindBy(xpath="//android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='0']")
     @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='0']")
-    public MobileElement item_layout_name;
+    public MobileElement mainitem_layout_name;
 
     @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.LinearLayout[@index='1']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")
-    public MobileElement item_layout_last_updated;
+    public MobileElement mainitem_layout_last_updated;
+
+
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")
+    public MobileElement articleitemlayoutname;
+
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")
+    public MobileElement articleitemlayoutlastupdated;
 
     //BBC News Hindi Common Page Objects
 
@@ -116,11 +123,112 @@ public class BBCNewsHindiPageObject {
     public MobileElement hindiphotos;
 
     @AndroidFindAll({
-            @AndroidBy(xpath = "//android.widget.Button[@index=1]"),
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/image_item_caption"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/image_item_caption")
+    })
+    public MobileElement imageitemcaption;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/headline_title"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/headline_title")
+    })
+    public MobileElement headlinetitle;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/headline_info"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/headline_info")
+    })
+    public MobileElement headlineinfo;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/headline_author_name"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/headline_author_name")
+    })
+    public MobileElement headlineauthorname;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/headline_author_title"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/headline_author_title")
+    })
+    public MobileElement headlineauthortitle;
+
+    @AndroidFindAll({
+            @AndroidBy(xpath = "//android.widget.Button[@index='1']"),
             @AndroidBy(xpath = "//android.widget.Button[@text='ओके']")
     })
     public MobileElement bbchindi_okbutton;
 
+    @AndroidFindAll({
+            @AndroidBy(id = "uk.co.bbc.hindi.internal:id/image_item_badge"),
+            @AndroidBy(id = "uk.co.bbc.hindi:id/image_item_badge")
+    })
+    public MobileElement imageitembadge;
+
+    @AndroidFindAll({
+            @AndroidBy(id = "uk.co.bbc.hindi.internal:id/media_item_caption"),
+            @AndroidBy(id = "uk.co.bbc.hindi:id/media_item_caption")
+    })
+    public MobileElement mediaitemcaption;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/smp_seek_bar"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/smp_seek_bar")
+    })
+    public MobileElement seekbar;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/smp_pause_button"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/smp_pause_button")
+    })
+    public MobileElement pausebutton;
+
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/title"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/title")
+    })
+    public MobileElement picturestitle;
+
+    @AndroidFindAll({
+            @AndroidBy(id="uk.co.bbc.hindi.internal:id/subtitle"),
+            @AndroidBy(id="uk.co.bbc.hindi:id/subtitle")
+    })
+    public MobileElement picturessubtitle;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@index='2']")
+    public MobileElement radiopagetext;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@index='3']")
+    public MobileElement radiopagetextdaily;
+
     @AndroidFindBy(id="android:id/message")
     public MobileElement bbchindi_message;
+
+    @AndroidFindBy(accessibility = "बैक")
+    public MobileElement backbutton;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='हेमिल्टन जीता तो इतिहास रच देगी टीम इंडिया']")
+    public MobileElement sportsarticle;
+
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']")
+    public MobileElement article;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='संबंधित टॉपिक']")
+    public MobileElement relatedtopics;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='संबंधित स्टोरीज़']")
+    public MobileElement relatedarticles;
+
+    @AndroidFindBy(accessibility = "Play")
+    public MobileElement playbutton;
+
+    @AndroidFindBy(accessibility = "volume")
+    public MobileElement volumebutton;
+
+    @AndroidFindBy(accessibility = "Fullscreen")
+    public MobileElement Fullscreenbutton;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Front page']")
+    public MobileElement frontpage;
 }
