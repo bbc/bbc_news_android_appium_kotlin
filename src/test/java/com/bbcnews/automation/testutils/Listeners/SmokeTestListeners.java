@@ -41,10 +41,6 @@ public class SmokeTestListeners implements ITestListener {
         String Device_Name = System.getProperty("DeviceName");
 
         List<String> files = new ArrayList<String>();
-//        File resource = new File("SmokeTest.html");
-//        String filePath = resource.getAbsolutePath();
-//        System.out.println("Resource File path : " + resource.getAbsolutePath());
-//       // files.add(filePath);
         testCase.put("_DeviceName", Device_Name);
         testCase.put("_DeviceOS", Deviceos_Name);
         testCase.put("files",files);
@@ -127,9 +123,6 @@ public class SmokeTestListeners implements ITestListener {
         System.out.println("errors: " + response.get("errors"));
         System.out.println("warnings: " + response.get("warnings"));
 
-
-        // System.out.println("errors: " + ((List<String>) response.get("errors")).size());
-        // System.out.println("warnings: " + ((List<String>) response.get("warnings")).size());
 
 
     }

@@ -178,7 +178,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.okbutton, false)
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.nothanksbutton, false)
             try {
-                if (androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).isDisplayed()) {
+                if (androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).isDisplayed) {
                     androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).click()
                 }
             } catch (e: org.openqa.selenium.NoSuchElementException) {
@@ -219,7 +219,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("HomePage", "Checking the HomePage", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
-            Assert.assertTrue(basePageObjectModel.topstories.isSelected())
+            Assert.assertTrue(basePageObjectModel.topstories.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObjectModel.item_layout_name)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObjectModel.item_layout_home_section)
             commonFunctionKotlin.elementDisplayed(androidDriver, basePageObjectModel.item_layout_last_updated)
@@ -269,7 +269,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("PopularPage", "Checking the Popular", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.popular, false)//,file.getAbsolutePath());
-            Assert.assertTrue(basePageObjectModel.popular.isSelected())
+            Assert.assertTrue(basePageObjectModel.popular.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, popularPageObject.mostread)
             Assert.assertEquals("Most Read", popularPageObject.mostread.text, "Text Matched")
         } catch (e: AssertionError) {
@@ -310,7 +310,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("MyNews", "Checking the MyNews", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.mynews, false)//,file.getAbsolutePath());
-            Assert.assertTrue(basePageObjectModel.mynews.isSelected())
+            Assert.assertTrue(basePageObjectModel.mynews.isSelected)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynews_summary)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mynewstitle)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.addnews_button)
@@ -333,7 +333,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             commonFunctionKotlin.startTest("MyNews", "Adding topics to MyNews", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mynews_startButton, false)
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.addtopics, false)
-            Assert.assertEquals("Manchester", myNewsPageObject.localnews_displayed.getText())
+            Assert.assertEquals("Manchester", myNewsPageObject.localnews_displayed.text)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed)
             commonFunctionKotlin.scrolltoElement(androidDriver, myNewsPageObject.Walestopic)
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Walestopic, false)
@@ -412,7 +412,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.bbcnewsChannel, false)//,file.getAbsolutePath());
         commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.live_media_item_caption)
         try {
-            if (!basePageObjectModel.sharestory.isDisplayed()) {
+            if (!basePageObjectModel.sharestory.isDisplayed) {
                 commonFunctionKotlin.verticalSwipe(androidDriver, "Up")
                 commonFunctionKotlin.elementDisplayed(androidDriver, basePageObjectModel.sharestory)
             }

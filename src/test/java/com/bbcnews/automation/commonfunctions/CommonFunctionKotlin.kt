@@ -16,6 +16,7 @@ import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.android.connection.ConnectionStateBuilder
 import io.appium.java_client.android.nativekey.AndroidKey
 import io.appium.java_client.android.nativekey.KeyEvent
+import io.appium.java_client.functions.ExpectedCondition
 import io.appium.java_client.touch.WaitOptions
 import io.appium.java_client.touch.offset.ElementOption
 import io.appium.java_client.touch.offset.PointOption
@@ -1008,7 +1009,22 @@ open class CommonFunctionKotlin {
         }
     }
 
-
+//    /**
+//     *
+//     * @param locator
+//     * @return
+//     */
+//
+//    fun elementFoundAndClicked(locator: By): ExpectedCondition<Boolean> {
+//        return object : ExpectedCondition<Boolean> {
+//            @Override
+//            fun apply(driver: AppiumDriver): Boolean {
+//                val el = driver.findElement(locator)
+//                el.click()
+//                return true
+//            }
+//        }
+//    }
 
 
 }

@@ -174,7 +174,7 @@ public class MyNewsPageObject {
 
 
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='2']")//android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']")
-    public MobileElement asiatopicarticle;
+    public MobileElement topicarticle;
 
 
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")
@@ -187,7 +187,7 @@ public class MyNewsPageObject {
     public MobileElement item_layout_home_section;
 
     @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']")
-    public MobileElement asiatopicvideoarticle;
+    public MobileElement topicvideoarticle;
 
     @AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")
     public MobileElement videoitem_layout_primary_time;
