@@ -34,7 +34,7 @@ class StatsTestData {
         var br: BufferedReader? = null
         var line: String
         val cvsSplitBy = ","
-        var country: Array<String>? = null
+        var country: Array<String>?
         var staturl: Array<String>?
         val aListColors = ArrayList<String>()
         try {

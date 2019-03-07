@@ -110,7 +110,7 @@ public class SmokeTestListeners implements ITestListener {
         System.out.println("on finish of test " + context.getName());
         // Map<String, Object> to hold your test results data.
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("target", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImQ0NjcxN2I3LTY3NGUtNGViNS1hZGUxLWI0MGRiNDE4N2U3OC0xNTUxMTAzNzA2MzU4IiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiZWEzZDIyOGEtY2NkNC00ODQxLWEwM2ItYmRmMzQzYjI1NGJjIiwidHlwZSI6InQifQ.ow9NLtBVBDJCEwmEVN0_XQpax8IRRwYv2GXkk9d5wsY");
+        data.put("target", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImE5YTJkZDlhLWFhODQtNGUxYy1iODJlLWUxMDc4NjIzYzVmMy0xNTUxOTcwMzY4OTA0IiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiOWM3MzFlODUtNzJkMC00NWUxLTk0Y2QtNDMxMjZiMDY2NmJkIiwidHlwZSI6InQifQ.uVod8nG0sp4Ng6L3JFLDTtbewFEAx1tEQTzvgZHUZZg");
 
         Map<String, Object> results = new HashMap<String, Object>();
         results.put("cases", testCases);

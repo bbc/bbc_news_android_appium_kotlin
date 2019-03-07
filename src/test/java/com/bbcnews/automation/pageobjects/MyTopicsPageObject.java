@@ -11,8 +11,8 @@ public class MyTopicsPageObject {
 
     }
 
-    @AndroidFindBy(accessibility = "Button: Add Brexit to My News")
-    public MobileElement brexttopic;
+    @AndroidFindBy(accessibility = "Button: Add England to My News")
+    public MobileElement englandtopic;
 
     @AndroidFindBy(accessibility = "Button: Add Africa to My News")
     public MobileElement africatopic;
@@ -41,8 +41,8 @@ public class MyTopicsPageObject {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Africa']")
     public MobileElement Africatopic;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Brexit']")
-    public MobileElement Brexittopic;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='England']")
+    public MobileElement Englandtopic;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wales']")
     public MobileElement Walestopic;

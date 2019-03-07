@@ -614,30 +614,30 @@ open class CommonFunctionKotlin {
      * @throws IOException
      */
 
-    @Throws(IOException::class)
-    fun comparetwoimages() {
-        val expected = File("./Screenshots/Before")
-        val actual = File("./Screenshots/After")
-
-     //   var expectedresults = //ArrayList<String>()
-        var expectedresults = getAllImages(expected, false)
-        val expectedimages = expectedresults.toTypedArray()
-
-   //     var actualresults: ArrayList<String> = ArrayList()
-        var actualresults = getAllImages(actual, false)
-        val actualimages = actualresults.toArray(arrayOfNulls<String>(actualresults.size))
-        var i = 0
-        while (i < expectedimages.size && i < actualimages.size) {
-            println("Expected Image :=" + expectedimages[i])
-            println("Actual Image :=" + actualimages[i])
-
-            compareImage(File(expectedimages[i]), File(actualimages[i]))
-            processImage(expectedimages[i], actualimages[i])
-            i++
-
-
-        }
-    }
+//    @Throws(IOException::class)
+//    fun comparetwoimages() {
+//        val expected = File("./Screenshots/Before")
+//        val actual = File("./Screenshots/After")
+//
+//     //   var expectedresults = //ArrayList<String>()
+//        var expectedresults = getAllImages(expected, false)
+//        val expectedimages = expectedresults.toTypedArray()
+//
+//   //     var actualresults: ArrayList<String> = ArrayList()
+//        var actualresults = getAllImages(actual, false)
+//        val actualimages = actualresults.toArray(arrayOfNulls<String>(actualresults.size))
+//        var i = 0
+//        while (i < expectedimages.size && i < actualimages.size) {
+//            println("Expected Image :=" + expectedimages[i])
+//            println("Actual Image :=" + actualimages[i])
+//
+//            compareImage(File(expectedimages[i]), File(actualimages[i]))
+//            processImage(expectedimages[i], actualimages[i])
+//            i++
+//
+//
+//        }
+//    }
 
 
         /**
@@ -646,43 +646,44 @@ open class CommonFunctionKotlin {
          * @param fileB
          * @return
          */
-         fun compareImage(fileA: File, fileB: File): Float {
 
-            var percentage = 0f
-            try {
-                // take buffer data from both image files //
-                val biA = ImageIO.read(fileA)
-                val dbA = biA.getData().getDataBuffer()
-                val sizeA = dbA.getSize()
-                val biB = ImageIO.read(fileB)
-                val dbB = biB.getData().getDataBuffer()
-                val sizeB = dbB.getSize()
-                var count = 0
-                // compare data-buffer objects //
-                if (sizeA == sizeB) {
-
-                    for (i in 0 until sizeA) {
-
-                        if (dbA.getElem(i) === dbB.getElem(i)) {
-                            count = count + 1
-                        }
-
-                    }
-                    percentage = (count * 100 / sizeA).toFloat()
-                    println("Image Difference Percentage --> :- $percentage")
-                    test?.log(Status.PASS,"Image Difference Percentage --> :- " + percentage);
-
-                } else {
-                    println("Both the images are not of same size")
-                    // test.log(Status.FAIL,"Both the images are not of same size");
-                }
-
-            } catch (e: Exception) {
-                println("Failed to compare image files ...")
-            }
-
-            return percentage
-        }
+//         fun compareImage(fileA: File, fileB: File): Float {
+//
+//            var percentage = 0f
+//            try {
+//                // take buffer data from both image files //
+//                val biA = ImageIO.read(fileA)
+//                val dbA = biA.getData().getDataBuffer()
+//                val sizeA = dbA.getSize()
+//                val biB = ImageIO.read(fileB)
+//                val dbB = biB.getData().getDataBuffer()
+//                val sizeB = dbB.getSize()
+//                var count = 0
+//                // compare data-buffer objects //
+//                if (sizeA == sizeB) {
+//
+//                    for (i in 0 until sizeA) {
+//
+//                        if (dbA.getElem(i) === dbB.getElem(i)) {
+//                            count = count + 1
+//                        }
+//
+//                    }
+//                    percentage = (count * 100 / sizeA).toFloat()
+//                    println("Image Difference Percentage --> :- $percentage")
+//                    test?.log(Status.PASS,"Image Difference Percentage --> :- " + percentage);
+//
+//                } else {
+//                    println("Both the images are not of same size")
+//                    // test.log(Status.FAIL,"Both the images are not of same size");
+//                }
+//
+//            } catch (e: Exception) {
+//                println("Failed to compare image files ...")
+//            }
+//
+//            return percentage
+//        }
 
 
         /**
@@ -1001,11 +1002,11 @@ open class CommonFunctionKotlin {
      * @param elementID
      */
     fun getElements(appiumDriver: AppiumDriver<MobileElement>, elementID: String) {
-        var Elements: List<MobileElement> = ArrayList<MobileElement>()
-        Elements = appiumDriver.findElements(By.id(elementID))
-        System.out.println("The elements counts are" + Elements.size)
-        for (i in 0 until Elements.size) {
-            System.out.println("The Text are " + Elements[i].getText())
+        var elements: List<MobileElement>
+        elements = appiumDriver.findElements(By.id(elementID))
+        System.out.println("The elements counts are" + elements.size)
+        for (i in 0 until elements.size) {
+            System.out.println("The Text are " + elements[i].getText())
         }
     }
 

@@ -38,17 +38,13 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     private lateinit var homePageObject: HomePageObject
     private lateinit var androidDriver: AndroidDriver<MobileElement>
     private lateinit var myNewsPageObject: MyNewsPageObject
-    //private lateinit var basePageObject: BasePageObject
     private lateinit var vidoePageObject: VideoPageObjects
     private lateinit var popularPageObject: PopularPageObjects
     private lateinit var basePageObjectModel: BasePageObject
     private lateinit var commonpageobjects: CommonPageObjects
+    private lateinit var myTopicsPageObject: MyTopicsPageObject
 
 
-
-//    private val curDate = Date()
-//    private val format = SimpleDateFormat("yyyy-MM-dd")
-//    private val DateToStr = format.format(curDate)
     var workingDirectory = System.getProperty("user.dir")
     private val screenshotpath = "$workingDirectory/Screenshots/"
 
@@ -138,8 +134,8 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             popularPageObject = PopularPageObjects()
             PageFactory.initElements(AppiumFieldDecorator(androidDriver), popularPageObject)
 
-            commonpageobjects = CommonPageObjects()
-            PageFactory.initElements(AppiumFieldDecorator(androidDriver),commonpageobjects)
+            myTopicsPageObject = MyTopicsPageObject()
+            PageFactory.initElements(AppiumFieldDecorator(androidDriver), myTopicsPageObject)
 
 
             testutility.emptyFolder(screenshotpath)
@@ -326,21 +322,24 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * Adding the topics to MyNews
      */
     @Test(priority = 8, description = "Test to check the adding the topics to MyNews page")
-    @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
+    @Throws(Exception::class)
     fun testAddingTopicstoMyNewsPage() {
         try {
             commonFunctionKotlin.startTest("MyNews", "Adding topics to MyNews", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mynews_startButton, false)
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.addtopics, false)
+
             Assert.assertEquals("Manchester", myNewsPageObject.localnews_displayed.text)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed)
-            commonFunctionKotlin.scrolltoElement(androidDriver, myNewsPageObject.Walestopic)
-            commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Walestopic, false)
-            commonFunctionKotlin.textpresent(androidDriver, "Wales", "added to")
-            commonFunctionKotlin.scrolltoElement(androidDriver, myNewsPageObject.Asiatopic)
-            commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Asiatopic, false)
-            commonFunctionKotlin.textpresent(androidDriver, "Asia", "added to")
+
+            commonFunctionKotlin.scrolltoElement(androidDriver, myTopicsPageObject.englandtopic)
+            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.englandtopic, false)
+            commonFunctionKotlin.textpresent(androidDriver, "England", "added to")
+
+            commonFunctionKotlin.scrolltoElement(androidDriver, myTopicsPageObject.africatopic)
+            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.africatopic, false)
+            commonFunctionKotlin.textpresent(androidDriver, "Africa", "added to")
 
         } catch (e: StaleElementReferenceException) {
             e.printStackTrace()
@@ -357,8 +356,8 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         try {
             commonFunctionKotlin.startTest("MyTopics", "Checking Added topics in MyTopics", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mytopics, false)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Walestopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Asiatopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Englandtopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Africatopic)
             commonFunctionKotlin.navigateBack(androidDriver)
         } catch (e: Exception) {
         }
@@ -370,8 +369,8 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     fun testCheckAddedTopicsUnderMyNews() {
         try {
             commonFunctionKotlin.startTest("MyNews", "Checking Added topics in MyNews", "Smoke")
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Walestopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Asiatopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Englandtopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Africatopic)
 
         } catch (e: Exception) {
         }
@@ -491,12 +490,14 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 //    }
 //
 //
+
+
 //    @Test(priority = 15, description = "Compares the images")
 //    @Throws(IOException::class)
 //    fun testcomparetheimages()
 //    {
 //        commonFunctionKotlin.startTest("CompraeImage", "Compares the HomePage", "Smoke")
-//        commonFunctionKotlin.comparetwoimages()
+//         testutility.comparetwoimages()
 //
 //    }
 

@@ -107,7 +107,7 @@ public class RegressionTestListeners implements ITestListener {
         System.out.println("on finish of test " + context.getName());
         // Map<String, Object> to hold your test results data.
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("target", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjFlMzc2NDcxLWQ5M2YtNDJhMC04NzYwLTIwMmRkYmEwMzc4Ni0xNTQ0OTc1NzMyNjAxIiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiM2EwM2MzYTMtYzA5YS00NDVmLTkzNjEtZjcwZWI2NDYxODNmIiwidHlwZSI6InQifQ.yow-dKqWyb8f_n3U0azBmYZqPnN1uqwwDy1-ckI0SmM");
+        data.put("target", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE2MjRkNDA1LTZhNTEtNDVkYS1iNmQyLWM5OTA3NWI4MDBlNi0xNTUxOTcwNDE3MjYwIiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiOTk5NWRiODQtYjdkMS00MjdmLWIyMzgtMDg1ZGIxNGIxZTdkIiwidHlwZSI6InQifQ.jyNIIoWPBAI9R9lQ_a_frh9JqQlDCbDKISAQeKy1N78");
 
         Map<String, Object> results = new HashMap<String, Object>();
         results.put("cases", testCases);

@@ -356,12 +356,13 @@ class BBCNewsReleaseBuildRegressionTest
         try {
             commonFunctionKotlin.startTest("Adding Topics ", "Test to check added Topics to MyNews page", "MyNews")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.addtopics, false)
-            Assert.assertEquals("Manchester", myNewsPageObject.localnews_displayed.text)
+
+            Assert.assertEquals("London", myNewsPageObject.localnews_displayed.text)
             commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.localnews_displayed)
 
-            commonFunctionKotlin.scrolltoElement(androidDriver, myTopicsPageObject.brexttopic)
-            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.brexttopic, false)
-            commonFunctionKotlin.textpresent(androidDriver, "Wales", "added to")
+            commonFunctionKotlin.scrolltoElement(androidDriver, myTopicsPageObject.englandtopic)
+            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.englandtopic, false)
+            commonFunctionKotlin.textpresent(androidDriver, "England", "added to")
 
             commonFunctionKotlin.scrolltoElement(androidDriver, myTopicsPageObject.africatopic)
             commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.africatopic, false)
@@ -387,11 +388,11 @@ class BBCNewsReleaseBuildRegressionTest
         try {
             commonFunctionKotlin.startTest("My Topics page", "Test to check added Topics MyNews page", "MyNews")
             commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.mytopics, false)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Walestopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Asiatopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Europeantopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.mortgagestopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.youtubetopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Englandtopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Africatopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Europeantopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Mortgagestopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Youtubetopic)
         } catch (e: NullPointerException) {
         }
 
@@ -408,7 +409,7 @@ class BBCNewsReleaseBuildRegressionTest
         System.out.println("The Text at get(2) is " + androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='2']/android.widget.TextView[@index='1']")).text)
         System.out.println("The Text at get(3) is " + androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='3']/android.widget.TextView[@index='1']")).text)
         System.out.println("The Text at get(4) is " + androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='4']/android.widget.TextView[@index='1']")).text)
-        Assert.assertEquals("Brexit", androidDriver.findElement(By.xpath("//android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")).text, "Test Matched")
+        Assert.assertEquals("England", androidDriver.findElement(By.xpath("//android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")).text, "Test Matched")
         commonFunctionKotlin.navigateBack(androidDriver)
 
     } catch (e: NullPointerException) {
@@ -420,20 +421,20 @@ class BBCNewsReleaseBuildRegressionTest
         try {
             commonFunctionKotlin.startTest("Checking Added Topics on Mynews page", "Selecting Added Topics", "MyNews")
             commonFunctionKotlin.sleepmethod(1000)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Walestopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Europeantopic)
-            commonFunctionKotlin.elementDisplayed(androidDriver, myNewsPageObject.Asiatopic)
-            commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Walestopic, false)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Englandtopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Europeantopic)
+            commonFunctionKotlin.elementDisplayed(androidDriver, myTopicsPageObject.Africatopic)
+            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.Englandtopic, false)
             for (i in 0 until basePageObject.topicspageelemnets_Release.size) {
                 commonFunctionKotlin.isElementPresent(androidDriver, By.id(basePageObject.topicspageelemnets_Release[i]))
             }
             commonFunctionKotlin.navigateBack(androidDriver)
-            commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Europeantopic, false)
+            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.Europeantopic, false)
             for (i in 0 until basePageObject.topicspageelemnets_Release.size) {
                 commonFunctionKotlin.isElementPresent(androidDriver, By.id(basePageObject.topicspageelemnets_Release[i]))
             }
             commonFunctionKotlin.navigateBack(androidDriver)
-            commonFunctionKotlin.tapButton(androidDriver, myNewsPageObject.Asiatopic, false)
+            commonFunctionKotlin.tapButton(androidDriver, myTopicsPageObject.Africatopic, false)
             for (i in 0 until basePageObject.topicspageelemnets_Release.size) {
                 commonFunctionKotlin.isElementPresent(androidDriver, By.id(basePageObject.topicspageelemnets_Release[i]))
             }
@@ -443,7 +444,7 @@ class BBCNewsReleaseBuildRegressionTest
 
     }
 
-    @Test(priority = 13, description = "Test to select An Article from the Asia Topics under MyNews ")
+    @Test(priority = 13, description = "Test to select An Article from the Africa Topics under MyNews ")
     @Throws(Exception::class)
     fun testSelectArticleAsiaTopic() {
         try {
@@ -456,7 +457,7 @@ class BBCNewsReleaseBuildRegressionTest
 
     }
 
-    @Test(priority = 14, description = "Test to select An Video Article from the Asia Topics under MyNews ")
+    @Test(priority = 14, description = "Test to select An Video Article from the Africa Topics under MyNews ")
     @Throws(Exception::class)
     fun testSelectVideoArticleAsiaTopic() {
         try {
@@ -495,8 +496,8 @@ class BBCNewsReleaseBuildRegressionTest
         System.out.println("The Text at get(3) is " + androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='3']/android.widget.TextView[@index='1']")).text)
         Assert.assertEquals("Africa", androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='3']/android.widget.TextView[@index='1']")).text, "Test Matched")
 
-        System.out.println("The Text at get(0) is " + androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")).text)
-        Assert.assertNotEquals("Brexit", androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")).text, "Test Matched")
+//        System.out.println("The Text at get(0) is " + androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")).text)
+//        Assert.assertNotEquals("Brexit", androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='1']")).text, "Test Matched")
 
         commonFunctionKotlin.navigateBack(androidDriver)
 

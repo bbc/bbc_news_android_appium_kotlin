@@ -203,7 +203,7 @@ public class VideoPageObjects {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Top Stories']")
     public MobileElement topstories;
 
-    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']")
+    @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='3']")
     public MobileElement topstoriesvideo;
 
     @AndroidFindBy(xpath="//android.widget.FrameLayout[@index='2']/android.view.ViewGroup[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")
