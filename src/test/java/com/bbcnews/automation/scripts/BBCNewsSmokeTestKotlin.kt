@@ -234,7 +234,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * checks the mynews page by allowing the location services
      */
 
-    @Test(priority = 4, description = "Test to check the Mynews page")
+    @Test(priority = 3, description = "Test to check the Mynews page")
     @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(Exception::class)
@@ -257,7 +257,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * checks the popular page most read
      */
-    @Test(priority = 5, description = "Test to check the  popular page")
+    @Test(priority = 4, description = "Test to check the  popular page")
     @Story("Popular")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(Exception::class)
@@ -278,7 +278,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * checks the popular most watched
      */
 
-    @Test(priority = 6, description = "checking that most watched displayed in popular page")
+    @Test(priority = 5, description = "checking that most watched displayed in popular page")
     @Story("Popular")
     @Severity(SeverityLevel.CRITICAL)
     fun testcheckMostWatched() {
@@ -298,7 +298,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      *
      */
 
-    @Test(priority = 7, description = "Test to check the Mynews page")
+    @Test(priority = 6, description = "Test to check the Mynews page")
     @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(Exception::class)
@@ -321,7 +321,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * Adding the topics to MyNews
      */
-    @Test(priority = 8, description = "Test to check the adding the topics to MyNews page")
+    @Test(priority = 7, description = "Test to check the adding the topics to MyNews page")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(Exception::class)
     fun testAddingTopicstoMyNewsPage() {
@@ -363,7 +363,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
         }
     }
 
-    @Test(priority = 10, description = "Test to check whether added topics displayed under MyNews page")
+    @Test(priority = 9, description = "Test to check whether added topics displayed under MyNews page")
     @Story("MyNews")
     @Severity(SeverityLevel.CRITICAL)
     fun testCheckAddedTopicsUnderMyNews() {
@@ -380,7 +380,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * Open the Menu items and assert whether links are displayed properly
      */
-    @Test(priority = 11, description = "Test to Check the Menu Options ")
+    @Test(priority = 10, description = "Test to Check the Menu Options ")
     @Story("Menu")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(Exception::class, AssertionError::class)
@@ -398,7 +398,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
      * check the live video on video page
      */
 
-    @Test(priority = 12, description = "Test to check the Video page and selecting the live video for playback and asserting the playback controls")
+    @Test(priority = 11, description = "Test to check the Video page and selecting the live video for playback and asserting the playback controls")
     @Story("VideoPage")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(Exception::class, AssertionError::class)
@@ -426,7 +426,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * check the live video  seeking
      */
-    @Test(priority = 13, description = "Test to check whether you can scrub the Live Video and Live Text shouldn't be displayed")
+    @Test(priority = 12, description = "Test to check whether you can scrub the Live Video and Live Text shouldn't be displayed")
     @Story("VideoPage")
     @Severity(SeverityLevel.CRITICAL)
     @Throws(AssertionError::class, Exception::class)
@@ -453,7 +453,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     /**
      * check to search for a topic
      */
-    @Test(priority = 14, description = "Test to check for search results")
+    @Test(priority = 13, description = "Test to check for search results")
     fun testSearchStories() {
         try {
             commonFunctionKotlin.startTest("Search", "Checking for Search Topics", "Smoke")
