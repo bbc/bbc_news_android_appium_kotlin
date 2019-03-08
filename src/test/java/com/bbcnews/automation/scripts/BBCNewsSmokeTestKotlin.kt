@@ -23,6 +23,7 @@ import org.testng.annotations.*
 import java.io.File
 import java.io.IOException
 import java.net.URL
+import java.time.Duration
 
 class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 {
@@ -55,6 +56,15 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 
             readDeviceDetailsCommandPrompt()
             setUP()
+            commonFunctionKotlin.checkConnection(androidDriver)
+            /**
+             *  setting the view mode to Portrait , since on Hive sometime device might be in Landscape mode
+             */
+            val orientation = androidDriver.orientation
+            if (orientation == ScreenOrientation.LANDSCAPE) {
+                androidDriver.rotate(ScreenOrientation.PORTRAIT)
+            }
+
             initialiseobjects()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -149,12 +159,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             val screenshot = file.absolutePath
             println("The ScreenShot Path is $screenshot")
 
-            val orientation = androidDriver.orientation
-            if (orientation != ScreenOrientation.LANDSCAPE) {
-                androidDriver.rotate(ScreenOrientation.PORTRAIT)
-            } else {
 
-            }
 
 
         } catch (e: NullPointerException) {
@@ -173,13 +178,13 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.okbutton, false)
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.nothanksbutton, false)
-//            try {
-//                if (androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).isDisplayed) {
-//                    androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).click()
-//                }
-//            } catch (e: org.openqa.selenium.NoSuchElementException) {
-//            }
-
+            try {
+                if (androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).isDisplayed) {
+                    androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).click()
+                    androidDriver.runAppInBackground(Duration.ofSeconds(30))
+                }
+            } catch (e: org.openqa.selenium.NoSuchElementException) {
+            }
 
         } catch (e: Exception) {
             e.printStackTrace()

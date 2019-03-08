@@ -62,6 +62,13 @@ class BBCNewsRegressionTestKotlin
             readDeviceDetailsCommandPrompt()
             setUP()
             commonFunctionKotlin.checkConnection(androidDriver)
+            /**
+             *  setting the view mode to Portrait , since on Hive sometime device might be in Landscape mode
+             */
+            val orientation = androidDriver.orientation
+            if (orientation == ScreenOrientation.LANDSCAPE) {
+                androidDriver.rotate(ScreenOrientation.PORTRAIT)
+            }
             initialiseobjects()
         } catch (e: Exception) {
             e.printStackTrace() }
@@ -135,11 +142,6 @@ class BBCNewsRegressionTestKotlin
         val screenshot = file.absolutePath
         println("The ScreenShot Path is $screenshot")
 
-        val orientation = androidDriver.orientation
-        if (orientation != ScreenOrientation.LANDSCAPE) {
-            androidDriver.rotate(ScreenOrientation.PORTRAIT)
-        }
-        else { }
     } catch (e: NullPointerException) {
         e.printStackTrace()
     } catch (e: Exception) {
