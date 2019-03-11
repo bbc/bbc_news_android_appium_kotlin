@@ -56,9 +56,12 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
 
             readDeviceDetailsCommandPrompt()
             setUP()
+            /**
+             *  checking the connection , since on Hive, sometime device wifi might be in turned OFF
+             */
             commonFunctionKotlin.checkConnection(androidDriver)
             /**
-             *  setting the view mode to Portrait , since on Hive sometime device might be in Landscape mode
+             *  setting the view mode to Portrait , since on Hive, sometime device might be in Landscape mode
              */
             val orientation = androidDriver.orientation
             if (orientation == ScreenOrientation.LANDSCAPE) {
@@ -181,7 +184,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
             try {
                 if (androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).isDisplayed) {
                     androidDriver.findElement(By.id("bbc.mobile.news.uk.internal:id/error_retry")).click()
-                    androidDriver.runAppInBackground(Duration.ofSeconds(30))
+
                 }
             } catch (e: org.openqa.selenium.NoSuchElementException) {
             }
@@ -218,6 +221,7 @@ class BBCNewsSmokeTestKotlin //: CommonFunctionKotlin()
     @Severity(SeverityLevel.CRITICAL)
     fun testCheckHomePage() {
         try {
+            androidDriver.runAppInBackground(Duration.ofSeconds(30))
             commonFunctionKotlin.startTest("HomePage", "Checking the HomePage", "Smoke")
             commonFunctionKotlin.tapButton(androidDriver, basePageObjectModel.topstories, false)
             Assert.assertTrue(basePageObjectModel.topstories.isSelected)
