@@ -810,7 +810,7 @@ class BBCNewsRegressionTestKotlin
         //commented out as Top Stories link isn't displayed
         //commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstories)
         commonFunctionKotlin.scrolltoElement(androidDriver, vidoePageObject.topstoriesvideo)
-       // commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideoplaytime)
+        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideoplaytime)
         commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_title)
         commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_link)
         commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_info)
