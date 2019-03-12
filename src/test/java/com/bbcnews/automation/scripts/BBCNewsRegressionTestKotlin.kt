@@ -809,11 +809,11 @@ class BBCNewsRegressionTestKotlin
         commonFunctionKotlin.tapButton(androidDriver, basePageObject.video, false)
         //commented out as Top Stories link isn't displayed
         //commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstories)
-//        commonFunctionKotlin.scrolltoElement(androidDriver, vidoePageObject.topstoriesvideo)
-//        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideoplaytime)
-//        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_title)
-//        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_link)
-//        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_info)
+        commonFunctionKotlin.scrolltoElement(androidDriver, vidoePageObject.topstoriesvideo)
+        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideoplaytime)
+        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_title)
+        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_link)
+        commonFunctionKotlin.elementDisplayed(androidDriver, vidoePageObject.topstoriesvideocontent_card_info)
 
         commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.topstoriesvideo, false)
         commonFunctionKotlin.tapButton(androidDriver, vidoePageObject.smp_placeholder_play_button, false)
