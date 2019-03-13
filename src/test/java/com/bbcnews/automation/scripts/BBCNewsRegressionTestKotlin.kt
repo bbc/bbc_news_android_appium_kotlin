@@ -555,8 +555,10 @@ class BBCNewsRegressionTestKotlin
             commonFunctionKotlin.startTest("Search for an Topics", "Checking Search Topics", "Search")
             commonFunctionKotlin.tapButton(androidDriver, basePageObject.searchbutton, false)
             commonFunctionKotlin.enterText(basePageObject.searchfield, "India")
-            commonFunctionKotlin.sleepmethod(1000)
+            commonFunctionKotlin.sleepmethod(2000)
             val searchTopics_text = commonFunctionKotlin.getText( basePageObject.searchheading)
+                    //androidDriver.findElement(By.xpath("android.widget.TextView[@text='Topics (5)']")).text
+                    //commonFunctionKotlin.getText( basePageObject.searchheading)
             assertEquals(searchTopics_text, "Topics (5)", "matched")
             commonFunctionKotlin.sleepmethod(1000)
             val searchRelatedheading_text = commonFunctionKotlin.getText( basePageObject.searchheading2)
