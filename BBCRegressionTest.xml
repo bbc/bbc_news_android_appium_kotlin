@@ -6,7 +6,7 @@
     </listeners>
     <test name="BBCNewsRegressionTest" enabled="true">
         <classes>
-            <class name="com.bbcnews.automation.scripts.ExampleDemo" />
+            <class name="com.bbcnews.automation.scripts.BBCNewsRegressionTestKotlin" />
         </classes>
     </test>
 </suite> <!-- Suite -->
